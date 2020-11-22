@@ -1,0 +1,74 @@
+<!--滚动标签-->
+<scroll-view scroll-x="true" style='width: 100%; white-space:nowrap; '>
+  <!-- tab -->
+  <view class="tab">
+    <view class="tab-nav" style='font-size:12px'>
+    <view wx:for="{{tabnav.tabitem}}" bindtap="setTab" data-tabindex="{{index}}" style="min-width:20%;max-width:20%;text-align:center;height: 80rpx;background: #fff;border-bottom:{{index>4?'1rpx solid #ddd;':''}}">{{item.text}}</view>
+    <view>
+    <view class="tab-line" style="width:{{100/tabnav.tabnum}}%;transform:translateX({{100*showtab}}%);"></view>
+    </view>
+  </view>
+  </view>
+</scroll-view>
+
+<!-- 课程信息 -->
+<scroll-view scroll-y class="scroll-y">
+  <view class="text" bindtap="click_detail">
+    <view class="left-text">
+      <text>计算机网络\n</text>
+      <text class="teacher-text">教师：</text>
+    </view>
+    <view class="right-text">
+      <text class="score-text">评分：</text>
+    </view>
+  </view>
+  <view class="text">
+    <view class="left-text">
+      <text>操作系统\n</text>
+      <text class="teacher-text">教师：</text>
+    </view>
+    <view class="right-text">
+      <text class="score-text">评分：</text>
+    </view>
+  </view>
+  <view class="text">
+    <view class="left-text">
+      <text>软件工程\n</text>
+      <text class="teacher-text">教师：</text>
+    </view>
+    <view class="right-text">
+      <text class="score-text">评分：</text>
+    </view>
+  </view>
+  <view class="text">
+    <view class="left-text">
+      <text>数据库系统\n</text>
+      <text class="teacher-text">教师：</text>
+    </view>
+    <view class="right-text">
+      <text class="score-text">评分：</text>
+    </view>
+  </view>
+  <view class="text">
+    <view class="left-text">
+      <text>编译原理\n</text>
+      <text class="teacher-text">教师：</text>
+    </view>
+    <view class="right-text">
+      <text class="score-text">评分：</text>
+    </view>
+  </view>
+  <view class="text">
+    <view class="left-text">
+      <text>计算机系统基础\n</text>
+      <text class="teacher-text">教师：</text>
+    </view>
+    <view class="right-text">
+      <text class="score-text">评分：</text>
+    </view>
+  </view>
+</scroll-view>
+
+
+
+

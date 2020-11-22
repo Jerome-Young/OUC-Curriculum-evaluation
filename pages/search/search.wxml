@@ -1,0 +1,24 @@
+<!--pages/search/search.wxml-->
+<view>
+     <view>
+        <view class="search-bar">
+            <view class="search-bar__form">
+            <!-- 搜索框 -->
+                <view class="search-bar__box">
+                    <icon class="search_in-box" type="search" size="14"></icon>
+                    <navigator url="/pages/searchinput/searchinput" open-type="navigate">请输入搜索内容</navigator>
+                </view>
+            </view>
+            <!-- 搜索按钮,调用搜索查询方法 -->
+            <view class="search-bar__cancel-btn" bindtap='方法名a'>搜索</view>
+        </view>
+    </view>
+</view>
+
+<view class='divider' />
+
+<view class='specialities_layout'>
+    <view class='view_divider' />
+    <text class="specialities_text">热门搜索</text>
+</view>
+<image class='bottom-image' src=''/> 
