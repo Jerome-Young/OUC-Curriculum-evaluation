@@ -16,7 +16,16 @@ wx.navigateTo({
   url: '/pages/gen_elective/gen_elective',
 })
 },
-
+tiaozhuan1(){
+  wx.navigateTo({
+    url: '/pages/detail/detail',
+  })
+  },
+  tiaozhuan2(){
+    wx.navigateTo({
+      url: '/pages/pub_basic/pub_basic',
+    })
+    },
 insersort :function (CD) {
    DB.get()//获取数据
   .then(res=>{//then可以让回调函数呈链式分布

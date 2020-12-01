@@ -1,0 +1,11 @@
+/* pages/detail/detail.wxss */
+.cent{
+  text-align: center;
+  margin: 30rpx;
+}
+.border-4{
+    text-align: center;
+    margin: 10rpx;
+  
+    border: double #000000 10rpx;
+}

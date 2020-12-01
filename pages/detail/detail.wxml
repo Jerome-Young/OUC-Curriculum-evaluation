@@ -1,0 +1,11 @@
+<!--pages/detail/detail.wxml-->
+<view class="cent"><text>详情页</text></view>
+<view style='background-color:green;' wx:for="{{Teacher}}" class="border-4" style="flex-direction:column;"  >
+        <view  >课程名：{{item.classname}}
+ </view>
+        <view > 教师：{{item.teacher}}</view>
+        
+        <view>点赞数：{{item.love}}</view>
+  
+
+      </view>
