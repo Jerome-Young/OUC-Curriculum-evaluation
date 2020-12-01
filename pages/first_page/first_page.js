@@ -54,7 +54,7 @@ Page({
   },
   imgclick_1(){
     wx.navigateTo({
-      url: '/pages/gen_ elective/gen_elective',
+      url: '/pages/gen_elective/gen_elective',
     })
   },
   imgclick_2(){

@@ -11,7 +11,8 @@
     "pages/dev_program/dev_program",
     "pages/gen_model/gen_model",
     "pages/user_feedback/user_feedback",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/register/register"
   ],
   "tabBar": {
     "color": "#FFFFFF",

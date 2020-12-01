@@ -61,8 +61,14 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/pub_basic/pub_basic",
-          "pathName": "pages/pub_basic/pub_basic",
+          "name": "pages/individual/individual",
+          "pathName": "pages/individual/individual",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/user_login/user_login",
+          "pathName": "pages/user_login/user_login",
           "query": "",
           "scene": null
         }

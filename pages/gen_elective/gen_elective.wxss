@@ -1,1 +1,39 @@
 /* pages/gen_elective/gen_elective.wxss */
+page{
+ /* background-color: cadetblue;
+  background-image: url(../../../image/weixin_logo.png);*/
+  background-repeat:repeat-x;
+  background-position-y: top;
+}
+.demo-view-2{
+  background-color: rgb(0, 0, 0);
+  height: 450rpx;
+  display: flex;
+  align-items: left;
+  justify-content: center;
+}
+.border-4{
+    text-align: center;
+    margin: 10rpx;
+  
+    border: double #000000 10rpx;
+}
+.border-8{
+    text-align: center;
+    margin: 20rpx;
+    border: outset #48a0f3 10rpx;
+}
+.cent{
+  text-align: center;
+  margin: 30rpx;
+}
+/* 返回顶部 */
+.goTop{
+  height: 80rpx;
+  width: 80rpx;
+  position: fixed;
+  bottom: 50rpx;
+  background: rgba(0,0,0,.3);
+  right: 30rpx;
+  border-radius: 50%;
+}

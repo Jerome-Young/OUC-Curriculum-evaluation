@@ -1,2 +1,21 @@
 <!--pages/gen_elective/gen_elective.wxml-->
-<text>pages/gen_elective/gen_elective.wxml</text>
+<text class="cent" >通识选修</text>
+<form bindsubmit="Submit2">
+<input class="border-8" name="searchname" placeholder="请输入课程名称"></input>
+<button type="primary" form-type="submit">搜索</button>
+
+</form>
+<view wx:for="{{Teacher}}">
+  {{item.cname}}-
+  {{item.teacher}}
+</view>
+<block>----------------------------------------------</block>
+<image src='../../img/gettopbutton.jpg' class='goTop' hidden='{{!floorstatus}}' bindtap="goTop"></image>
+<view style='background-color:green;'  wx:for="{{arr}}" class="border-4" style="flex-direction:column;"  >
+        <view  class="flex-item flex-item-V demo-text-1">课程名：{{item.classname}}
+ </view>
+        <view class="flex-item flex-item-V demo-text-2"> 教师：{{item.teacher}}</view>
+        <view class="flex-item flex-item-V demo-text-3">所属学院：{{item.college}}</view>
+        <view class="flex-item flex-item-V demo-text-3">所属模块：{{item.model}}</view>
+      </view>
+

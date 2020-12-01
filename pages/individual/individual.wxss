@@ -17,6 +17,7 @@ page{
 }
 .login-img{
   width: 750rpx;
+  height: 400rpx;
 }
  
 /*表单内容*/
@@ -48,7 +49,7 @@ page{
   text-align: right;
   margin-right: 22px;
   margin-top: 11px;
-  color: #cccccc;
+  color: #000;
   font-size: 14px
 }
  
@@ -58,17 +59,53 @@ page{
   background-color: #cccccc;
   margin-top: 1px;
 }
+
+checkbox-group{
+  display: flex;
+  justify-content:flex-end;
+  margin-top: 30rpx;
+  color: #545454;
+  font-size: 14px;
+  box-sizing: border-box;
+  padding-right: 20rpx;
+}
+
 /*按钮*/
 .loginBtnView {
   width: 100%;
   height: auto;
-  background-color: #f2f2f2;
+  /* background-color: #f2f2f2; */
   margin-top: 0px;
   margin-bottom: 0px;
   padding-bottom: 0px;
 }
  
 .loginBtn {
-  width: 80%;
-  margin-top: 35px;
+  width:400rpx;
+  height: 90rpx;
+  margin-top: 18px;
+  border-radius: 100rpx;
+  background-color: rgb(24, 144, 255);
+  color: white;
+  font-size: medium;
+  line-height: 90rpx;
+  text-align: center;
+}
+
+.btn-hover {
+  background-color: rgb(105, 183 , 255);
+}
+
+/* 注册按钮 */
+.register{
+  margin-top: 11px;
+  border-radius: 100rpx;
+  color: rgb(24, 144, 255);
+  border-width: 1rpx 1rpx 1rpx 1rpx;
+  border-color: rgb(24, 144, 255);
+  border-style: solid;
+  text-align: center;
+  width:400rpx;
+  height: 90rpx;
+  line-height: 90rpx;
 }

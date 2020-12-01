@@ -1,12 +1,27 @@
-<!--pages/search/search.wxml-->
-<view>
+
+
+<!-- <form bindsubmit="Submit2">
+<input name="searchname" placeholder="请输入课程名称或教师名称"></input>
+<button type="primary" form-type="submit">搜索</button>
+<view wx:for="{{Teacher}}">
+  {{item.classname}}-
+  {{item.teacher}}
+</view> -->
+
+<!-- </form> -->
+<!-- <form bindsubmit="Submit2"> -->
+  <view>
      <view>
         <view class="search-bar">
             <view class="search-bar__form">
             <!-- 搜索框 -->
                 <view class="search-bar__box">
                     <icon class="search_in-box" type="search" size="14"></icon>
-                    <navigator url="/pages/searchinput/searchinput" open-type="navigate">请输入搜索内容</navigator>
+                    <input type="text" class="search-bar__input" name="searchname" placeholder="请输入搜索内容" bindinput="MYinput"/>
+                    <navigator wx:for="{{Teacher}}" url="/pages/detail/detail?classname={{item.classname}}&teacher={{item.teacher}}" open-type="navigate">
+                            {{item.classname}}-
+                             {{item.teacher}}
+                    </navigator>
                 </view>
             </view>
             <!-- 搜索按钮,调用搜索查询方法 -->
@@ -14,11 +29,9 @@
         </view>
     </view>
 </view>
-
-<view class='divider' />
-
-<view class='specialities_layout'>
-    <view class='view_divider' />
-    <text class="specialities_text">热门搜索</text>
-</view>
-<image class='bottom-image' src=''/> 
+<!-- <button type="primary" form-type="submit">搜索</button>
+<view wx:for="{{Teacher}}">
+  {{item.classname}}-
+  {{item.teacher}}
+</view> -->
+<!-- </form> -->
