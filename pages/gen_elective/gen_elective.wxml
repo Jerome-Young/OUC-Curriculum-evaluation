@@ -5,13 +5,10 @@
 <button type="primary" form-type="submit">搜索</button>
 
 </form>
-<view wx:for="{{Teacher}}">
-  {{item.cname}}-
-  {{item.teacher}}
-</view>
+
 <block>----------------------------------------------</block>
-<image src='../../img/gettopbutton.jpg' class='goTop' hidden='{{!floorstatus}}' bindtap="goTop"></image>
-<view style='background-color:green;'  wx:for="{{arr}}" class="border-4" style="flex-direction:column;"  >
+<image src='../../images/gettopbutton.jpg' class='goTop' hidden='{{!floorstatus}}' bindtap="goTop"></image>
+<view style='background-color:green;'  wx:for="{{Teacher}}" class="border-4" style="flex-direction:column;"  bindtap="click" data-teacher="{{item.teacher}}"data-classname="{{item.classname}}">
         <view  class="flex-item flex-item-V demo-text-1">课程名：{{item.classname}}
  </view>
         <view class="flex-item flex-item-V demo-text-2"> 教师：{{item.teacher}}</view>

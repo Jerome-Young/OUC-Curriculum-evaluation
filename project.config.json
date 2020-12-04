@@ -5,7 +5,7 @@
     "ignore": []
   },
   "setting": {
-    "urlCheck": true,
+    "urlCheck": false,
     "es6": true,
     "enhance": false,
     "postcss": true,
@@ -67,8 +67,8 @@
           "scene": null
         },
         {
-          "name": "pages/user_login/user_login",
-          "pathName": "pages/user_login/user_login",
+          "name": "我的评论",
+          "pathName": "pages/personal/my_comment/my_comment",
           "query": "",
           "scene": null
         }

@@ -16,5 +16,5 @@
     <input password="true" placeholder="确认密码" placeholder-class="color" bindblur='re_password' />
     <image src="https://7069-pintu-game-52d2a-1301643624.tcb.qcloud.la/pintu_icon/pass.png"></image>
   </view>
-  <button class="register" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">注册</button>
+  <button class="register" hover-class="btn_hover" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">注册</button>
 </view>

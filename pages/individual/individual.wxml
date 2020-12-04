@@ -1,4 +1,4 @@
-<view class="container" hidden="{{login}}">
+<view class="container_1" hidden="{{login}}">
   <view class="login-icon">
     <image class="login-img" src="https://img-blog.csdn.net/20170307230621260"></image>
   </view>
@@ -32,6 +32,38 @@
   </view>
 </view>
 
-<view class="container" hidden="{{!login}}">
-  <button>按钮</button>
+<!-- 个人中心 -->
+<view class="container_2" hidden="{{!login}}">
+  <view class="log_box1 float">
+    <!-- 头像 -->
+      <view class="float">   
+        <image class='top_head' src='{{head_image}}'></image>  
+        <view class='top_text'  mode="aspecFill" bindtap="updatahead">点击更换头像</view>
+      </view>
+    <!-- 昵称 -->
+    <view class="name float">
+      <text>{{head_name}}</text>
+    </view>
+  </view>
+  <block wx:for="{{userListInfo}}">
+    <view class="log_box2" bindtap="click_personal" data-go="{{item.url}}">
+      <view class="log_box3">
+        <image src="{{item.icon}}"></image>
+      </view>
+      <view class="log_box4">
+        <view>{{item.text}}</view>
+      </view>
+      <view class="listimage" style="background-image:url(../../../../images/jinru.png);"></view>
+    </view>
+  </block>
+  <!-- 注销 -->
+  <view class="log_box2" bindtap="click_zhuxiao">
+    <view class="log_box3">
+      <image src="../../images/zhuxiao.png"></image>
+    </view>
+    <view class="log_box4">
+      <view>注销</view>
+    </view>
+    <view class="listimage" style="background-image:url(../../../../images/jinru.png);"></view>
+  </view>
 </view>

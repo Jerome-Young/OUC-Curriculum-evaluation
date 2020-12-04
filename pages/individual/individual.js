@@ -1,5 +1,5 @@
 const db=wx.cloud.database()//数据库初始化
-const admin = db.collection("user");
+var app = getApp()
 
 Page({
   data: {
@@ -11,9 +11,29 @@ Page({
     isrememberpass: '',//是否记住密码
     account: '',//用户名
     password: '',//密码
-    login:false
+    login:false,
+    userListInfo: [{
+      icon: "../../images/pinglun.png",
+      text: '我的评论',
+      url: '/pages/personal/my_comment/my_comment'
+    },{
+      icon: "../../images/xiaoxi.png",
+      text: '消息',
+      url: '/pages/personal/news/news'
+    },{
+      icon: "../../images/lianxiwomen.png",
+      text: '联系我们',
+      url: '/pages/personal/contact_us/contact_us'
+    },{
+      icon: "../../images/shezhi.png",
+      text: '设置',
+      url: '/pages/personal/install/install'
+    }],
+    head_image: '../../images/默认头像.jpg',
+    showModal: false,
+    head_name: '小海'
   },
- 
+
 // 获取输入账号
   accountInput :function (e) {
     this.setData({
@@ -138,6 +158,81 @@ Page({
     wx.navigateTo({
       url: '/pages/register/register',
     })
-  }
+  },
+
+  onLoad: function(){
+    var that = this
+    wx.getUserInfo(function(userInfo){
+      userInfo: userInfo
+    })
+  },
+
+  //点击事件 
+  click_personal(e){
+    wx.navigateTo({
+      url: e.currentTarget.dataset.go
+    })
+  },
+  // 注销
+  click_zhuxiao(){
+    wx.showToast({
+      title: '注销成功',
+      icon: 'none',
+      duration: 2000
+    })
+    this.setData({
+      login: false,
+      password: '',
+      account: ''
+    })
+
+  },
+
+  // 更换头像
+  	//通过事件执行更换头像方法比如点击头像执行该方法
+	updatahead(){
+		var that = this;
+		wx.chooseImage({
+			count: 1, // 默认9
+			sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+			sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+			success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        that.setData({
+          head_image: res.tempFilePaths
+        })
+				var imgPaths = res.tempFilePaths
+				that.updataheadservice(imgPaths[0]);
+			}
+		})
+	},
+	//上传图片
+	updataheadservice(imgPaths){
+		var that = this;
+		wx.uploadFile({
+			url: '', //你的服务器地址
+			filePath: imgPaths, //要上传文件资源的路径
+			name: 'headimg', //文件对应的 key，开发者在服务端可以通过这个 key 获取文件的二进制内容
+			formData: {
+				adminid: app.globalData.adminid  //HTTP 请求中其他额外的参数比如 用户id
+			},
+			success(res) {
+				console.log(res)
+				that.preservationheadimg(res.img);//回调成功调用保存图片接口
+			}
+		})
+	},
+	//保存图片
+	preservationheadimg(){
+		wx.request({
+			url: '',//你的接口
+			data: {
+				userid:123456,
+			},
+			success: function(res) {
+				console.log(res)
+			},
+		})
+	},
 
 })
