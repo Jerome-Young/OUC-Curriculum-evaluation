@@ -1,0 +1,26 @@
+<!--function.wxml-->
+<scroll-view scroll-y="true" class="container">
+  <swiper indicator-dots="{{indicatorDots}}"
+    autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{imgUrls}}">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image" />
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <view class='function_container'>
+    <view class='function_item' wx:for="{{functions}}" wx:for-index="idx" wx:for-item="function">
+        <image class='function_img' src='{{function.pic_url}}'/> 
+        <view class='function_name'>{{function.name}}</view>
+    </view>
+  </view>
+
+  <view class='divider' />
+
+  <view class='specialities_layout'>
+      <view class='view_divider' />
+      <text class="specialities_text">热门搜索</text>
+  </view>
+  <image class='bottom-image' src=''/> 
+</scroll-view>

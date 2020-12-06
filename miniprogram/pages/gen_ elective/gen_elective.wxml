@@ -1,0 +1,51 @@
+<!-- 课程信息 -->
+<scroll-view scroll-y class="scroll-y">
+  <view class="text" bindtap="click_detail">
+    <view class="left-text">
+      <text>恋爱与婚姻\n</text>
+      <text class="teacher-text">教师：</text>
+    </view>
+    <view class="right-text">
+      <text class="score-text">评分：</text>
+    </view>
+    <view class="leftt-text">
+      <text class="academy-text">所属学院：</text>
+    </view>
+      <view class="leftt-text">
+        <text class="model-text">所属模块：</text>
+    </view>
+  </view>
+
+  <view class="text">
+    <view class="left-text">
+      <text>营养与健康\n</text>
+      <text class="teacher-text">教师：</text>
+    </view>
+    <view class="right-text">
+      <text class="score-text">评分：</text>
+    </view>
+    <view class="leftt-text">
+      <text class="academy-text">所属学院：</text>
+    </view>
+      <view class="leftt-text">
+        <text class="model-text">所属模块：</text>
+    </view>
+  </view>
+
+  <view class="text">
+    <view class="left-text">
+      <text>大学生心理健康\n</text>
+      <text class="teacher-text">教师：</text>
+    </view>
+    <view class="right-text">
+      <text class="score-text">评分：</text>
+    </view>
+    <view class="leftt-text">
+      <text class="academy-text">所属学院：</text>
+    </view>
+      <view class="leftt-text">
+        <text class="model-text">所属模块：</text>
+    </view>
+  </view>
+</scroll-view>
+    

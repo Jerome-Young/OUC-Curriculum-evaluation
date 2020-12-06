@@ -1,0 +1,63 @@
+{
+
+  "pages": [
+    "pages/first_page/first_page",
+    "pages/comment/comment",
+    "pages/search/search",
+    "pages/index/index",
+    "pages/individual/individual",
+    "pages/logs/logs",
+    "pages/pub_basic/pub_basic",
+    "pages/gen_ elective/gen_elective",
+    "pages/profession/profession",
+    "pages/dev_program/dev_program",
+    "pages/gen_model/gen_model",
+    "pages/teacher1/teacher1",
+    "pages/user_feedback/user_feedback"
+  ],
+  "tabBar": {
+    "color": "#FFFFFF",
+    "selectedColor": "#000000",
+    "backgroundColor": "#6495ED",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/first_page/first_page",
+        "text": "首页",
+        "iconPath": "images/ship.jpg",
+        "selectedIconPath": "images/ship.jpg"
+      },
+      {
+        "pagePath": "pages/search/search",
+        "text": "搜索",
+        "iconPath": "images/ship.jpg",
+        "selectedIconPath": "images/ship.jpg"
+      },
+      {
+        "pagePath": "pages/individual/individual",
+        "text": "我的",
+        "iconPath": "images/ship.jpg",
+        "selectedIconPath": "images/ship.jpg"
+      },
+      {
+        "pagePath": "pages/comment/comment",
+        "text": "我的",
+        "iconPath": "images/ship.jpg",
+        "selectedIconPath": "images/ship.jpg"
+      }
+    ]
+  },
+  "window": {
+    "navigationBarBackgroundColor": "#6595e9",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "OUC课程评价",
+    "backgroundColor": "#eeeeee",
+    "backgroundTextStyle": "light"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}
+
+
+
+
