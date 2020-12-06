@@ -1,0 +1,80 @@
+/* pages/dev_program/dev_program.wxss */
+.tab {
+  display: flex;
+  flex-direction: column;
+  }
+.tab-nav {
+  border-bottom: 1rpx solid #ddd;
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  line-height: 79rpx;
+  position: relative;
+  }
+  .tab-line {
+  position: absolute;
+  left: 0;
+  bottom: -1rpx;
+  height: 5rpx;
+  background: #f7982a;
+  transition: all 0.3s;
+  }
+.tab-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  }
+  /*选项卡页面联动切换*/
+.swiper-tab {
+  width: 100%;
+  border-bottom: 2rpx solid #777;
+  text-align: center;
+  line-height: 80rpx;
+  }
+.swiper-tab-list {
+  font-size: 30rpx;
+  display: inline-block;
+  width: 33.33%;
+  color: #777;
+  text-align: center;
+  }
+.on {
+  color: #da7c0c;
+  border-bottom: 1rpx solid #da7c0c;
+  }
+  /*欢迎语*/
+  .welcome {
+    font-size: 30rpx;
+    display: inline-block;
+    color: #777;
+    text-align: center;
+    }
+  /*图片居中*/
+  .image{
+    display:flex;
+    justify-content: center;      
+    margin-left:43rpx;
+   }
+   /*图片防拉伸*/
+   .img{
+    height: auto;
+    display:flex;
+    justify-content: center; 
+    margin-left:43rpx;
+   }
+   /*相关说明*/
+   .explain {
+    font-size: 30rpx;
+    display: inline-block;
+    margin-left:10rpx;
+    }
+
+    .mytest{
+      position: absolute;
+      top:40rpx;
+      left:0rpx;
+      width:100%;
+      height:100%;
+      z-index:-1;
+   }
+
