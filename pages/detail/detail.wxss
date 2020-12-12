@@ -9,3 +9,138 @@
   
     border: double #000000 10rpx;
 }
+
+ 
+.qiu {
+  width: 100%;
+  background-color: white;
+}
+ 
+.qiu_titleAndUser {
+  margin-left: 20rpx;
+}
+ 
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ 
+.user {
+  width: 100%;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+ 
+.userImg {
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+}
+ 
+.userName {
+  font-size: 30rpx;
+  color: #566f98;
+}
+ 
+.text_detail {
+  font-size: 30rpx;
+  margin-left: 20rpx;
+  margin-bottom: 20rpx;
+}
+ 
+.img {
+  width: 90%;
+  height: 500rpx;
+  margin: 20rpx 20rpx;
+}
+ 
+.countImg {
+  width: 50rpx;
+  height: 50rpx;
+}
+ 
+.count {
+  font-size: 20rpx;
+  margin-left: 5rpx;
+}
+ 
+.time {
+  font-size: 25rpx;
+  color: #757575;
+  margin-left: 410rpx;  
+}
+ 
+.reply {
+  width: 100%;
+  background-color: white;
+  margin-top: 20rpx;
+  margin-bottom: 100rpx;
+}
+ 
+.replyUser {
+  padding-top: 10rpx;
+  margin-left: 20rpx;
+  margin-bottom: 20rpx;
+  width: 100%;
+}
+ 
+.reply_content {
+  width: 80%;
+  font-size: 30rpx;
+  margin-left: 90rpx;
+  margin-top: -30rpx;
+}
+ 
+.reply_time {
+  width: 260rpx;
+  height: 50rpx;
+  font-size: 25rpx;
+  color: #757575;
+  margin-left: 480rpx;  
+}
+ 
+.huifu {
+  position: absolute;
+  margin-left: 90rpx;
+  margin-top: -90rpx;
+}
+ 
+.huifu_text {
+  font-size: 30rpx;
+  margin-left: 5rpx;
+  margin-right: 5rpx;
+}
+ 
+.ask {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 90rpx;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+}
+ 
+.input {
+  width: 600rpx;
+  border: 1rpx solid #f1f1f1;
+  margin: 12rpx 0rpx 12rpx 20rpx;
+  border-radius: 30rpx;
+  background: #f1f5fc;
+  font-size: 25rpx;
+  text-align: center;
+}
+ 
+.button {
+  background: #6fb442;
+  color: white;
+  border-radius: 30rpx;
+  font-size: 30rpx;
+  width: 130rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 12rpx 20rpx;
+}

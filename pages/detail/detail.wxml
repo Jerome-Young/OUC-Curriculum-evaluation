@@ -9,3 +9,48 @@
   
 
       </view>
+      <view class='qiu' bindtouchstart="touchstar">
+  <view class='qiu_titleAndUser'>
+    <text class='title'>{{title}}</text>
+    <view class='user'>
+      <image class='userImg' src='{{userImg}}'></image>
+      <text class='userName' style='position: absolute; margin-left:20rpx;'>{{userName}}</text>
+    </view>
+    <view class='text_detail'>{{content}}</view>
+    <image wx:if="{{imgUrl !==''}}" class='img' src='https://qhds.drefore.cn{{imgUrl}}'></image>
+    <view class='three_but'>
+      <view class='three_view'>
+        <button class='share' open-type='share'>
+          <image class='countImg' src="../../img/xiaohui.jpg" />
+        </button>
+      </view>
+      <view class='three_view'>
+        <image bindtap='addWantImg' class='countImg' src='../../img/gettopbutton.jpg'></image>
+        <text class='count'>{{count}}</text>
+      </view>
+      <view class='three_view'>
+        <text class='time'>{{time}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='reply'>
+  <view class='replyUser' wx:for="{{wantReplay}}" wx:key="{{index}}" bindtouchstart="touchstar">
+    <block wx:if="{{item.replyName === userName && item.state === true}}">
+      <image class='userImg' src='{{item.userImg}}'></image>
+      <text class='userName' style='position: absolute; margin-left:20rpx;'>{{item.userName}}</text>
+      <view class='reply_content' data-replyuserid='{{item.userID}}' data-replyname='{{item.userName}}' bindtap='getReplyUserID'>{{item.content}}</view>
+      <view class='reply_time'>{{item.time}}</view>
+    </block>
+    <block wx:else>
+      <image class='userImg' src='{{item.userImg}}'></image>
+      <view class='huifu'>
+        <text class='userName'>{{item.userName}}</text>
+        <text class='huifu_text'>回复@</text>
+        <text class='userName'>{{item.replyName}}</text>
+      </view>
+      <view class='reply_content' data-replyuserid='{{item.userID}}' data-replyname='{{item.userName}}' bindtap='getReplyUserID'>{{item.content}}</view>
+      <view class='reply_time'>{{item.time}}</view>
+    </block>
+  </view>
+</view>
