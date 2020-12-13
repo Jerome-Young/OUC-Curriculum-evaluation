@@ -6,20 +6,27 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    arr: [
+      { teacher: '1',classname: '一', college: '12' ,model:"9"},
+      { teacher: '5',classname: '五', college: '24',model:"6" },
+      { teacher: '3',classname: '三', college: '28' ,model:"4"},
+      { teacher: '4',classname: '四', college: '18' ,model:"1"},
+      { teacher: '2',classname: '二', college: '36' ,model:"2"},
+      { teacher: '1',classname: '一', college: '12' ,model:"9"},
+      { teacher: '5',classname: '五', college: '24',model:"6" },
+      { teacher: '3',classname: '三', college: '28' ,model:"4"},
+      { teacher: '4',classname: '四', college: '18' ,model:"1"},
+      { teacher: '2',classname: '二', college: '36' ,model:"2"},
+    ],
     Teacher:""
 
   },
-click(e){
-wx.navigateTo({
-  url: '/pages/detail/detail?teacher='+e.currentTarget.dataset.teacher+'&classname='+e.currentTarget.dataset.classname,
-})
-},
+
     //查询
     Submit2(res){
       db.collection("class")
         .where({//查询指令 条件筛选用where
-          classname:res.detail.value.searchname
+          cname:res.detail.value.searchname
         })
         .get()//获取数据
         .then(res=>{//then可以让回调函数呈链式分布

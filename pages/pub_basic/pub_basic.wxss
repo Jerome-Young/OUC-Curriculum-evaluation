@@ -25,7 +25,7 @@
   display:inline-block;
 }
 .view-item{
-  width:60px;
+  width:120px;
   height:30px;
   display:flex;
   align-items:center;
@@ -47,6 +47,7 @@
   justify-content: center;
   letter-spacing: 4rpx;
   box-sizing: border-box;
+  background-color: rgb(180,180,180);
 }
 
 .tab-on {
@@ -76,11 +77,11 @@
 .teacher-text{
   font-size: 14px;
   font-weight: 500;
-  margin-right: 200px;
 }
 .right-text{
-  display: inline-block;
+  /* display: inline-block; */
   text-align: right;
+  padding-right: 20px;
 }
 .score-text{
   font-size: 14px;

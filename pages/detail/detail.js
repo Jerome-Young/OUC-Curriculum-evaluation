@@ -1,50 +1,45 @@
-// pages/detail/detail.js
 const db=wx.cloud.database()//数据库初始化
 
-var app = getApp();
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-classname:"",
-teacher:"",
-wantID: 0,
-userID: 0, //userID
-replyUserID: 0, //回复哪个人的userID 默认等于楼主id
-replyName: "",
-count: 0,
-content: "",
-imgUrl: "",
-time: "",
-title: "",
-userName: "",
-userImg: "",
-limit: 5,
-wantReplay: [],
-contentInp: "",
-replyInp: "",
-focus: false,
-check: true, //默认显示我来评论input
-isCard: true,
-comment_text: null,
-reply_id:0,
-placeholder:'就不说一句吗？',
-reply_id:0,
-now_reply_name:null,
-type:0,
-now_parent_id:0,
-now_reply:0
-
+    temp:'',
+  talks: [],
+  touchStart: 0,
+  inputValue: '',
+  inputBiaoqing: '',
+  faces: ['https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535727304160&di=0cc9d01a4ae2deca5634c3136d5c01f6&imgtype=0&src=http%3A%2F%2Fimg5q.duitang.com%2Fuploads%2Fitem%2F201406%2F12%2F20140612202753_u4nG5.jpeg', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535727304159&di=da2c1c4e868ee95f3cd65ffc6e24a456&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201505%2F01%2F20150501083603_yuTQc.jpeg', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535727304156&di=7d46a1482a8e798a70d8d52320285b02&imgtype=0&src=http%3A%2F%2Fup.enterdesk.com%2Fedpic_source%2F7b%2Ff9%2F01%2F7bf901db9091dff00a20d474c83afc45.jpg'],
+  names: "匿名用户",
+  isShow: false, //控制emoji表情是否显示 
+  isLoad: true, //解决初试加载时emoji动画执行一次
+  cfBg: false,
+  emojiChar: "☺-😋-😌-😍-😏-😜-😝-😞-😔-😪-😭-😁-😂-😃-😅-😆-👿-😒-😓-😔-😏-😖-😘-😚-😒-😡-😢-😣-😤-😢-😨-😳-😵-😷-😸-😻-😼-😽-😾-😿-🙊-🙋-🙏-✈-🚇-🚃-🚌-🍄-🍅-🍆-🍇-🍈-🍉-🍑-🍒-🍓-🐔-🐶-🐷-👦-👧-👱-👩-👰-👨-👲-👳-💃-💄-💅-💆-💇-🌹-💑-💓-💘-🚲",
+  //0x1f---
+  emoji: [
+   "60a", "60b", "60c", "60d", "60f",
+   "61b", "61d", "61e", "61f",
+   "62a", "62c", "62e",
+   "602", "603", "605", "606", "608",
+   "612", "613", "614", "615", "616", "618", "619", "620", "621", "623", "624", "625", "627", "629", "633", "635", "637",
+   "63a", "63b", "63c", "63d", "63e", "63f",
+   "64a", "64b", "64f", "681",
+   "68a", "68b", "68c",
+   "344", "345", "346", "347", "348", "349", "351", "352", "353",
+   "414", "415", "416",
+   "466", "467", "468", "469", "470", "471", "472", "473",
+   "483", "484", "485", "486", "487", "490", "491", "493", "498", "6b4"
+  ],
+  emojis: [], //qq、微信原始表情
+  alipayEmoji: [], //支付宝表情
+  classname:"",
+  teacher:"",
+  source_id:"",
+  user_id:'',
+time:'',
+datatime:'',
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (e) {
+  
+  onLoad: function(e) {
     console.log(e)
-    let that=this;
 this.data.classname=e.classname;
 this.data.teacher=e.teacher;
     db.collection("class")
@@ -56,339 +51,199 @@ this.data.teacher=e.teacher;
     .then(res=>{//then可以让回调函数呈链式分布
       console.log(res)
       this.setData({
-        Teacher:res.data
+        Teacher:res.data,
       })
+    }) ,
+     db.collection("class").field({_id:true})
+    .where({//查询指令 条件筛选用where
+      classname:this.data.classname,
+      teacher:this.data.teacher
     })
-    this.setData({
-      wantID: e.id
-    })
-    this.getWantDetail();
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-
-  replyComment:function(e){
-    var id = e.currentTarget.dataset.cid
-    console.log(id)
-    var name = e.currentTarget.dataset.name
-    
-    var type = e.currentTarget.dataset.type
-    var parent_id = e.currentTarget.dataset.pid
-    console.log(parent_id)
-    this.setData({
-      now_reply:id,
-      now_reply_name: name,
-      now_reply_type: type,
-      now_parent_id:parent_id,
-      focus:true,
-      placeholder: '回复' + name+":"
-    })
-  },
-  getWantDetail() {
-    let params = {
-      wantID: this.data.wantID,
-      offset: 0,
-      limit: this.data.limit
-    }
-    app.getWantDetail(params).then(res => {
-      let wantDetail = [];
-      for (var i = 0; i < res.data.wantDetail.length; i++) {
-        if (res.data.wantDetail[i].pid === 0) {
-          wantDetail = res.data.wantDetail[i]
-          res.data.wantDetail.splice(i, 1)
-        }
-      }
+    .get()//获取数据
+    .then(res=>{//then可以让回调函数呈链式分布
+      console.log(res)
       this.setData({
-        wantReplay: res.data.wantDetail,
-        count: wantDetail.count,
-        content: wantDetail.content,
-        imgUrl: wantDetail.imgUrl,
-        time: wantDetail.time,
-        title: wantDetail.title,
-        userName: wantDetail.userName,
-        userImg: wantDetail.userImg,
-        userID: wantDetail.userID,
-        replyUserID: wantDetail.userID,
+        source_id:res.data
       })
     })
+  var em = {},
+   that = this,
+   emChar = that.data.emojiChar.split("-");
+  var emojis = []
+  that.data.emoji.forEach(function(v, i) {
+   em = {
+   char: emChar[i],
+   emoji: "0x1f" + v
+   };
+   emojis.push(em)
+  });
+  that.setData({
+   emojis: emojis
+  })
   },
- 
-  onReachBottom: function() {
-    this.data.limit = this.data.limit + 4
-    this.getWantDetail();
+  //解决滑动穿透问题
+  emojiScroll: function(e) {
+  console.log(e)
   },
-  //触摸事件切换到回复楼主
-  touchstar: function() {
-    this.setData({
-      check: true,
-      focus: false,
-      contentInp: "",
-      replyInp: "",
-    })
+  //点击表情显示隐藏表情盒子
+  emojiShowHide: function() {
+  this.setData({
+   isShow: !this.data.isShow,
+   isLoad: false,
+   cfBg: !this.data.false
+  })
   },
-  /**评论输入框 */
-  contentInp(e) {
-    this.setData({
-      contentInp: e.detail.value
-    })
+  //表情选择
+  emojiChoose: function(e) {
+  console.log(e)
+  //当前输入内容和表情合并
+  // let value = e.currentTarget.dataset.emoji;
+  this.data.inputBiaoqing += e.currentTarget.dataset.emoji;
+  console.log(this.data.inputBiaoqing)
+  this.setData({
+   inputValue: this.data.inputBiaoqing
+  })
   },
-  /**答复输入框 */
-  replyInp(e) {
-    this.setData({
-      replyInp: e.detail.value
-    })
+  //点击emoji背景遮罩隐藏emoji盒子
+  cemojiCfBg: function() {
+  this.setData({
+   isShow: false,
+   cfBg: false
+  })
   },
- 
-  /**消息图片点击 */
-  addWantImg() {
-    this.setData({
-      focus: true,
-    })
+  onReady: function() {
+  // 评论弹出层动画创建
+  this.animation = wx.createAnimation({
+   duration: 400, // 整个动画过程花费的时间，单位为毫秒
+   timingFunction: "ease", // 动画的类型
+   delay: 0 // 动画延迟参数
+  })
   },
-  addWant() {
-    if (this.data.contentInp.length > 100) {
-      wx.showToast({
-        title: '请将字数控制在100字以内哦',
-        icon: "none",
-        duration: 1000,
-        mask: true,
-      })
-    } else {
-      if (this.data.replyUserID === this.data.userID && this.data.check === true) {
-        this.addComment();
-      } else {
-        this.addReply();
-      }
-    }
-  },
- 
-  /**发表评论 */
-  addComment() {
-    let params = {
-      pID: this.data.wantID,
-      userID: app.globalData.userID,
-      content: this.data.contentInp,
-      replyUserID: this.data.userID,
-      type: 1,
-      state: true
-    }
-    app.addReply(params).then(res => {
-      if (res.state === 1) {
-        this.setData({
-          contentInp: ""
-        })
-        wx.showToast({
-          title: '评论成功',
-          icon: "none",
-          duration: 1000,
-          mask: true,
-        })
-        this.getWantDetail();
-      }
-    })
-  },
-  /**点击评论获取要回复的人的id */
-  getReplyUserID(e) {
-    let replyID = e.currentTarget.dataset.replyuserid;
-    if (replyID === app.globalData.userID) {
-      wx.showToast({
-        title: '请不要回复自己哦',
-        icon: "none",
-        duration: 1000,
-        mask: true,
-      })
-    } else {
-      this.setData({
-        replyUserID: replyID,
-        replyName: e.currentTarget.dataset.replyname,
-        focus: true,
-        check: false
-      })
-    }
-  },
-  /**回复 */
-  addReply() {
-    let params = {
-      pID: this.data.wantID,
-      userID: app.globalData.userID,
-      content: this.data.replyInp,
-      replyUserID: this.data.replyUserID,
-      type: 1,
-      state: false
-    }
-    app.addReply(params).then(res => {
-      if (res.state === 1) {
-        this.setData({
-          replyInp: "",
-          check: true
-        })
-        wx.showToast({
-          title: '评论成功',
-          icon: "none",
-          duration: 1000,
-          mask: true,
-        })
-        this.getWantDetail();
-      }
-    })
-  },
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function(ops) {
-    wx.showShareMenu({
-      withShareTicket: true
-    })
-    return {
-      title: 'xxxx',
-      path: 'pages/wantDetail/wantDetail?id=' + this.data.wantID,
-      imageUrl: "https://qhds.drefore.cn" + this.data.imgUrl,
-      success: function(res) {
-        console.log("success" + res)
-      },
-      fail: function(res) {
-        console.log("fail" + res)
-      }
-    }
-  },
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-  etCommentText: function (e) {
-    var val = e.detail.value;
-    this.setData({
-      comment_text: val
-    });
-  },
-onReplyBlur: function (e) {
-    var that = this;
-    const text = e.detail.value.trim();
-    if (text === '') {
-      that.setData({
-        now_reply: 0,
-        now_reply_name:null,
-        now_reply_type:0,
-        now_parent_id:0,
-        placeholder: "就不说一句吗？",
-        focus:false
-      });
-    }
+  showTalks: function() {
+  // 加载数据
+  this.loadTalks();
+  // 设置动画内容为：使用绝对定位显示区域，高度变为100%
+  this.animation.bottom("0rpx").height("100%").step()
+  this.setData({
+   talksAnimationData: this.animation.export()
+  })
   },
   
-  sendComment:function(e){
-    var that= this
-    var comment_list = that.data.comment_list  //获取data中的评论列表
-    var comment_list2 = that.data.comment_list2  //获取data中的回复列表
-    var comment_text = that.data.comment_text  //获取当前的评论幸喜
-    var userinfo = that.data.userinfo   //获取当前的用户信息
-    var comment_user_name = userinfo.nickName  //用户昵称
-    var comment_user_avatar = userinfo.avatarUrl //用户头像
-    var timestamp = Date.parse(new Date()); //时间戳
-    var create_time = common.timetrans(timestamp)  //格式化时间戳
-    var reply_id = that.data.reply_id //获取回复的评论id
-    console.log(timestamp)
-    console.log(create_time)
-    var comment_list_length = comment_list.length //获取当前评论数组的长度
-    console.log("当前评论数组的长度" + comment_list_length)
-    var last_id = comment_list[comment_list_length -1].comment_id //获取最后一个的id
-    console.log("当前评论数组的最后一个的id" + last_id)
-    var comment_list2_length = comment_list2.length //获取当前回复数组的长度
-    console.log("当前评论数组的长度" + comment_list2_length)
-    var last_id2 = comment_list2[comment_list2_length - 1].comment_id //获取回复一个的id
-    console.log("当前评论数组的最后一个的id" + last_id2)
-    var new_id = last_id > last_id2 ? last_id + 1 : last_id2 + 1
-    console.log("新的id是"+new_id)
-    var reply_name = null
-    var parent_id = 0
-    var reply_id = that.data.now_reply
-    console.log("回复的id是" + reply_id)
-    if (reply_id!=0){
-      console.log("现在是回复")
-      var reply_type = that.data.now_reply_type
-      parent_id = that.data.now_parent_id
-      console.log("回复的所属的parent_id是" + parent_id)
-      console.log("回复的类型是" + reply_type)
-      if (parent_id > 0) {
-        if (reply_type == 1){
-          parent_id = reply_id
-          console.log("现在是回复评论")
-        }else{
-    
-          reply_name = that.data.now_reply_name
-          console.log("现在是再回复" + reply_name+"的回复")
-        }
-      }
-    }else{
-      console.log("现在是评论" )
-    }
-    var comment_detail = {}
-    comment_detail.comment_id = new_id
-    comment_detail.comment_user_name = comment_user_name
-    comment_detail.comment_user_avatar = comment_user_avatar
-    comment_detail.comment_text = comment_text
-    comment_detail.comment_time = create_time
-    comment_detail.reply_id = reply_id
-    comment_detail.parent_id = parent_id
-    comment_detail.reply_name = reply_name
-    console.log(comment_detail)
-    if (comment_detail.parent_id>0){
-      comment_list2.push(comment_detail)
-    }else{
-      comment_list.unshift(comment_detail)
-    }
-    
-    that.setData({
-      comment_text:null,
-      now_reply: 0,
-      now_reply_name: null,
-      now_reply_type: 0,
-      now_parent_id: 0,
-      placeholder: "就不说一句吗？",
-      comment_list,
-      comment_list2
-    },()=>{
-      //这里写你访问后台插入数据库的代码
-    })
-    
+  hideTalks: function() {
+  // 设置动画内容为：使用绝对定位隐藏整个区域，高度变为0
+  this.animation.bottom("-100%").height("0rpx").step()
+  this.setData({
+   talks: [],
+   talksAnimationData: this.animation.export()
+  })
   },
+  
+  // 加载数据
+  loadTalks: function(e) {
+  // 随机产生一些评论
+  wx.showNavigationBarLoading();
+  let temp=this.data.source_id;
+  //获取评论
+  db.collection("comment")
+  .where({//查询指令 条件筛选用where
+    source_id:temp
+  })
+  .get()//获取数据
+  .then(res=>{//then可以让回调函数呈链式分布
+    console.log(res)
+    this.setData({
+      talks:res.data
+    })
+  })
+
+ 
+  let that = this;
+ //this.data.talks =this.data.talks.concat(this.data.times);
+  //console.log(this.data.talks)
+  
+  this.setData({
+   talks:this.data.talks,
+   talksAnimationData: that.animation.export()
+  })
+  wx.hideNavigationBarLoading();
+  },
+  
+  onScrollLoad: function() {
+  // 加载新的数据
+  this.loadTalks();
+  },
+  //下拉评论框隐藏
+  touchStart: function(e) {
+  let touchStart = e.touches[0].clientY;
+  this.setData({
+   touchStart,
+  })
+  },
+  touchMove: function(e) {
+  // console.log(this.data.touchStart)
+  let touchLength = e.touches[0].clientY - this.data.touchStart;
+  console.log(touchLength - 100)
+  if (touchLength > 100) {
+   this.animation.bottom("-100%").height("0rpx").step()
+   this.setData({
+   talks: [],
+   talksAnimationData: this.animation.export(),
+   })
+  }
+  },
+  //输入框失去焦点时触发
+  bindInputBlur: function(e) {
+  console.log(e)
+  console.log(this.data.inputBiaoqing)
+  this.data.inputValue = e.detail.value + this.data.inputBiaoqing;
+  },
+  //点击发布，发布评论
+  faBu: function() {
+  let that = this;
+  var timestamp = Date.parse(new Date());
+timestamp = timestamp / 1000;
+//获取当前时间
+var n = timestamp * 1000;
+var date = new Date(n);
+//年
+var Y = date.getFullYear();
+//月
+var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);
+//日
+var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+//时
+var h = date.getHours();
+//分
+var m = date.getMinutes();
+var times = Y+"-"+M+"-"+D+"-"+h+":"+m;
+this.setData({
+  time:times
+ })
+
+  this.data.talks.unshift({
+   avatarUrl: this.data.faces[Math.floor(Math.random() * this.data.faces.length)],
+   nickName: this.data.names[Math.floor(Math.random() * this.data.names.length)],
+   comment: this.data.inputValue,
+   talkTime: this.data.time
+  })
+   db.collection('comment').add({
+    data:{
+     comment:this.data.inputValue,
+     account:this.data.names,
+     source_id:this.data.source_id,
+     insert_time:this.data.time,
+    }
 })
+.then(res=>{
+    console.log(res)
+})
+  that.data.inputValue = '';
+  that.setData({
+   talks: that.data.talks,
+   inputValue: that.data.inputValue,
+   talksAnimationData: that.animation.export()
+  })
+  
+  }
+ })
+

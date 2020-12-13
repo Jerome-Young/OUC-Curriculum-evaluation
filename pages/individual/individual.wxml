@@ -1,0 +1,37 @@
+<view class="container" hidden="{{login}}">
+  <view class="login-icon">
+    <image class="login-img" src="https://img-blog.csdn.net/20170307230621260"></image>
+  </view>
+  <view class="login-from">
+ 
+    <!--账号-->
+    <view class="inputView">
+      <image class="nameImage" src="https://img-blog.csdn.net/20170307230810128"></image>
+      <label class="loginLab">账号</label>
+      <input class="inputText" placeholder="请输入账号"  value="{{account}}" bindinput="accountInput" />
+    </view>
+    <view class="line"></view>
+ 
+    <!--密码-->
+    <view class="inputView">
+      <image class="keyImage" src="https://img-blog.csdn.net/20170307230820966"></image>
+      <label class="loginLab">密码</label>
+      <input class="inputText" password="true" placeholder="请输入密码" value="{{password}}" bindinput="passwordInput" />
+    </view>
+ 
+    <!--按钮-->
+    <view class="loginBtnView">
+      <checkbox-group bindchange="checkboxChange">
+        <label class="checkbox" wx:for="{{items}}" wx:key='this'>
+        <checkbox value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+        </label>
+      </checkbox-group>
+      <button class="loginBtn"  hover-class="btn-hover" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">登录</button>
+      <button class="register" bindtap="register">注册</button>
+    </view>
+  </view>
+</view>
+
+<view class="container" hidden="{{!login}}">
+  <button>按钮</button>
+</view>

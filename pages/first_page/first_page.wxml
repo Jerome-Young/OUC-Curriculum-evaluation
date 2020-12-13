@@ -1,0 +1,46 @@
+<!--function.wxml-->
+<scroll-view scroll-y="true" class="container">
+  <swiper indicator-dots="{{indicatorDots}}"
+    autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{imgUrls}}">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image" />
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <view class='function_container'>
+    <view class='function_item'>
+        <image bindtap="imgclick_0" class='function_img' src='{{functions[0].pic_url}}'/> 
+        <view class='function_name' bindtap="imgclick_0" >{{functions[0].name}}</view>
+    </view>
+    <view class='function_item'>
+        <image bindtap="imgclick_1" class='function_img' src='{{functions[1].pic_url}}'/> 
+        <view class='function_name' bindtap="imgclick_1" >{{functions[1].name}}</view>
+    </view>
+    <view class='function_item'>
+        <image bindtap="imgclick_2" class='function_img' src='{{functions[2].pic_url}}'/> 
+        <view class='function_name' bindtap="imgclick_2" >{{functions[2].name}}</view>
+    </view>
+    <view class='function_item'>
+        <image bindtap="imgclick_3" class='function_img' src='{{functions[3].pic_url}}'/> 
+        <view class='function_name' bindtap="imgclick_3" >{{functions[3].name}}</view>
+    </view>
+    <view class='function_item'>
+        <image bindtap="imgclick_4" class='function_img' src='{{functions[4].pic_url}}'/> 
+        <view class='function_name' bindtap="imgclick_4" >{{functions[4].name}}</view>
+    </view>
+    <view class='function_item'>
+        <image bindtap="imgclick_5" class='function_img' src='{{functions[5].pic_url}}'/> 
+        <view class='function_name' bindtap="imgclick_5" >{{functions[5].name}}</view>
+    </view>
+  </view>
+
+  <view class='divider' />
+
+  <view class='specialities_layout'>
+      <view class='view_divider' />
+      <text class="specialities_text">热门搜索</text>
+  </view>
+  <image class='bottom-image' src=''/> 
+</scroll-view>

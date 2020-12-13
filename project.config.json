@@ -1,5 +1,6 @@
 {
   "description": "项目配置文件",
+  "cloudfunctionRoot": "cloud/",
   "packOptions": {
     "ignore": []
   },
@@ -39,7 +40,7 @@
   "compileType": "miniprogram",
   "libVersion": "2.14.0",
   "appid": "wx48927e3350eea9a4",
-  "projectname": "miniprogram-1",
+  "projectname": "program-master",
   "debugOptions": {
     "hidedInDevtools": []
   },
@@ -48,23 +49,30 @@
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
-    "search": {
-      "list": []
-    },
-    "conversation": {
+    "plugin": {
       "list": []
     },
     "game": {
-      "list": []
-    },
-    "plugin": {
       "list": []
     },
     "gamePlugin": {
       "list": []
     },
     "miniprogram": {
-      "list": []
+      "list": [
+        {
+          "name": "pages/individual/individual",
+          "pathName": "pages/individual/individual",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/detail/detail",
+          "pathName": "pages/detail/detail",
+          "query": "",
+          "scene": null
+        }
+      ]
     }
   }
 }
