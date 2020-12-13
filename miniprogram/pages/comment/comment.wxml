@@ -1,0 +1,15 @@
+
+<form bindsubmit="Submit">
+  <input name="classname" placeholder="请输入课程名称"></input>
+  <input name="teacher" placeholder="请输入教师名称"></input>
+  <textarea name="introduction" placeholder="请输入介绍"></textarea>
+  <textarea name="comment" placeholder="请输入评价"></textarea>
+  <view>签到</view>
+  <radio-group class='radio-group' bindchange="radioChange">
+    <radio  class='radio'style='margin-left: 11px;' wx:for-items="{{Register}}" wx:key="num" value="{{item.num}}" checked="{{item.checked}}">
+    <text class="loginLab" style='margin-left: 0px;'>{{item.value}}</text>
+    </radio>
+  </radio-group>
+  <button type="primary" form-type="submit">提交</button>
+  <button  form-type="reset">重置</button>
+</form>

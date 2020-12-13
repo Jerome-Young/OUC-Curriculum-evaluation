@@ -1,0 +1,40 @@
+.text{
+  border: double #000 10rpx;
+}
+.left-text{
+  display: inline-block;
+  text-align: left;
+  padding-left: 10px;
+  height: 15px;
+  font-size: 16px;
+  font-weight: bolder;
+}
+.leftt-text{
+  display: block;
+  text-align: left;
+  padding-left: 10px;
+  height: 20px;
+  font-size: 16px;
+  font-weight: bolder;
+}
+.teacher-text{
+  font-size: 14px;
+  font-weight: 500;
+  margin-right: 200px;
+}
+.right-text{
+  display: inline-block;
+  text-align: right;
+}
+.score-text{
+  font-size: 14px;
+  font-weight: 500;
+}
+.academy-text{
+  font-size: 14px;
+  font-weight: 500;
+}
+.model-text{
+  font-size: 14px;
+  font-weight: 500;
+}
