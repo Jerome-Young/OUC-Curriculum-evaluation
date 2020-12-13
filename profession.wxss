@@ -53,10 +53,7 @@
   }
 .swiper-box view {
   text-align: center;
-  }
-
-
-  
+  } 
   .text{
     border: double #000 10rpx;
   }
