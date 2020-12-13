@@ -1,0 +1,41 @@
+<view class="content">
+  <view class="sliderContent">
+    <view class="slider" bindtouchstart="moveSendBtnStart1" bindtouchend="moveSendBtnEnd1" bindright="click_1" bindtouchmove="moveSendBtn1" style="left:{{moveSendBtnLeft1}}rpx;background-color:{{SendBtnColor1}}" >科学与技术</view>
+    <view class="txt">滑动进入</view>
+  </view>
+</view>
+
+<view class="content">
+  <view class="sliderContent">
+    <view class="slider" bindtouchstart="moveSendBtnStart2" bindtouchend="moveSendBtnEnd2" bindright="click_2" bindtouchmove="moveSendBtn2" style="left:{{moveSendBtnLeft2}}rpx;background-color:{{SendBtnColor2}}" >社会与文化</view>
+    <view class="txt">滑动进入</view>
+  </view>
+</view>
+
+<view class="content">
+  <view class="sliderContent">
+    <view class="slider" bindtouchstart="moveSendBtnStart3" bindtouchend="moveSendBtnEnd3" bindright="click_3" bindtouchmove="moveSendBtn3" style="left:{{moveSendBtnLeft3}}rpx;background-color:{{SendBtnColor3}}" >哲学与人生</view>
+    <view class="txt">滑动进入</view>
+  </view>
+</view>
+
+<view class="content">
+  <view class="sliderContent">
+    <view class="slider" bindtouchstart="moveSendBtnStart4" bindtouchend="moveSendBtnEnd4" bindright="click_4" bindtouchmove="moveSendBtn4" style="left:{{moveSendBtnLeft4}}rpx;background-color:{{SendBtnColor4}}" >文学与艺术</view>
+    <view class="txt">滑动进入</view>
+  </view>
+</view>
+
+<view class="content">
+  <view class="sliderContent">
+    <view class="slider" bindtouchstart="moveSendBtnStart5" bindtouchend="moveSendBtnEnd5" bindtouchmove="moveSendBtn5" style="left:{{moveSendBtnLeft5}}rpx;background-color:{{SendBtnColor5}}" >历史与文明</view>
+    <view class="txt">滑动进入</view>
+  </view>
+</view>
+
+<view class="content">
+  <view class="sliderContent">
+    <view class="slider" bindtouchstart="moveSendBtnStart6" bindtouchend="moveSendBtnEnd6" bindsecond="click_6" bindtouchmove="moveSendBtn6" style="left:{{moveSendBtnLeft6}}rpx;background-color:{{SendBtnColor6}}" >国防生军政</view>
+    <view class="txt">滑动进入</view>
+  </view>
+</view>
