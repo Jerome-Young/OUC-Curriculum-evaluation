@@ -9,6 +9,8 @@ Page({
     mobile: '', //手机号
     password: '', //密码
     re_password: '', //确认密码
+    head_name:'',
+    head_image:''
   },
   // 用户名失去焦点
   account(e) {
@@ -118,7 +120,9 @@ Page({
                               account: that.data.account, //用户名
                               mobile: that.data.mobile, //手机号
                               password: that.data.password, //密码
-                              time: time //创建时间
+                              time: time, //创建时间
+                              head_name:'小海',
+                              head_image:'../../images/默认头像.jpg'
                             },
                             success: function(res) {
                               if (res.errMsg == 'collection.add:ok') { //接口调取成功，也就是注册成功
@@ -126,7 +130,8 @@ Page({
                                 wx.hideLoading();
                                 wx.showToast({
                                   title: '注册成功',
-                                  icon: 'none'
+                                  icon: 'none',
+                                  duration: 2000
                                 })
                                 wx.switchTab({
                                   url: '/pages/individual/individual',

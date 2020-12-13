@@ -38,7 +38,6 @@
     <!-- 头像 -->
       <view class="float">   
         <image class='top_head' src='{{head_image}}'></image>  
-        <view class='top_text'  mode="aspecFill" bindtap="updatahead">点击更换头像</view>
       </view>
     <!-- 昵称 -->
     <view class="name float">

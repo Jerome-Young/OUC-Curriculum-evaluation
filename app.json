@@ -16,8 +16,7 @@
     "pages/personal/install/install",
     "pages/personal/my_comment/my_comment",
     "pages/personal/news/news",
-    "pages/personal/contact_us/contact_us",
-    "pages/personal/log_off/log_off"
+    "pages/personal/contact_us/contact_us"
   ],
   "tabBar": {
     "color": "#FFFFFF",

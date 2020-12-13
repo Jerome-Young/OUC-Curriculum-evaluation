@@ -1,13 +1,15 @@
 const db=wx.cloud.database()//数据库初始化
+var app= getApp()
 
 Page({
   data: {
+  temp:'',
   talks: [],
   touchStart: 0,
   inputValue: '',
   inputBiaoqing: '',
-  faces: ['https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535727304160&di=0cc9d01a4ae2deca5634c3136d5c01f6&imgtype=0&src=http%3A%2F%2Fimg5q.duitang.com%2Fuploads%2Fitem%2F201406%2F12%2F20140612202753_u4nG5.jpeg', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535727304159&di=da2c1c4e868ee95f3cd65ffc6e24a456&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201505%2F01%2F20150501083603_yuTQc.jpeg', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535727304156&di=7d46a1482a8e798a70d8d52320285b02&imgtype=0&src=http%3A%2F%2Fup.enterdesk.com%2Fedpic_source%2F7b%2Ff9%2F01%2F7bf901db9091dff00a20d474c83afc45.jpg'],
-  names: ['贝贝', '晶晶', '欢欢', '妮妮'],
+  faces: '',
+  names: "匿名用户",
   isShow: false, //控制emoji表情是否显示 
   isLoad: true, //解决初试加载时emoji动画执行一次
   cfBg: false,
@@ -30,25 +32,45 @@ Page({
   emojis: [], //qq、微信原始表情
   alipayEmoji: [], //支付宝表情
   classname:"",
-  teacher:""
+  teacher:"",
+  source_id:"",
+  user_id:'',
+  time:'',
+  datatime:'',
   },
   
-  onLoad: function(e) {
-    console.log(e)
-this.data.classname=e.classname;
-this.data.teacher=e.teacher;
-    db.collection("class")
-    .where({//查询指令 条件筛选用where
-      classname:this.data.classname,
-      teacher:this.data.teacher
+onLoad: function(e) {
+  console.log(app.user_login)
+  this.setData({
+    names: app.user_login.head_name,
+    faces: app.user_login.head_image
+  })
+  this.data.classname=e.classname;
+  this.data.teacher=e.teacher;
+  db.collection("class")
+  .where({//查询指令 条件筛选用where
+    classname:this.data.classname,
+    teacher:this.data.teacher
+  })
+  .get()//获取数据
+  .then(res=>{//then可以让回调函数呈链式分布
+    console.log(res)
+    this.setData({
+      Teacher:res.data,
     })
-    .get()//获取数据
-    .then(res=>{//then可以让回调函数呈链式分布
-      console.log(res)
-      this.setData({
-        Teacher:res.data
-      })
+  }) ,
+  db.collection("class").field({_id:true})
+  .where({//查询指令 条件筛选用where
+    classname:this.data.classname,
+    teacher:this.data.teacher
+  })
+  .get()//获取数据
+  .then(res=>{//then可以让回调函数呈链式分布
+    console.log(res)
+    this.setData({
+      source_id:res.data
     })
+  })
   var em = {},
    that = this,
    emChar = that.data.emojiChar.split("-");
@@ -89,7 +111,6 @@ this.data.teacher=e.teacher;
   },
   //点击emoji背景遮罩隐藏emoji盒子
   cemojiCfBg: function() {
-  console.log('womenlai')
   this.setData({
    isShow: false,
    cfBg: false
@@ -123,32 +144,30 @@ this.data.teacher=e.teacher;
   },
   
   // 加载数据
-  loadTalks: function() {
+  loadTalks: function(e) {
   // 随机产生一些评论
   wx.showNavigationBarLoading();
+  let temp=this.data.source_id;
+  //获取评论
+  db.collection("comment")
+  .where({//查询指令 条件筛选用where
+    source_id:temp
+  })
+  .get()//获取数据
+  .then(res=>{//then可以让回调函数呈链式分布
+    console.log(res)
+    this.setData({
+      talks:res.data
+    })
+  })
+
+ 
   let that = this;
-  let talks = [];
-  let faces = ['https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1535701703&di=bfde939cc559b0f8edcbfd1adb6e667d&src=http://img5q.duitang.com/uploads/item/201505/15/20150515205520_iWF2U.jpeg',
-   'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535711703167&di=ce7a08b889137a70f7b4568e13df0e4d&imgtype=0&src=http%3A%2F%2Fd.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2F6f061d950a7b02088811236964d9f2d3562cc85a.jpg',
-   'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535711703162&di=8ec21b75cb44de532f8be29300f075b0&imgtype=0&src=http%3A%2F%2Fpic36.photophoto.cn%2F20150710%2F0005018347189196_b.jpg',
-  ];
-  let names = ['佳佳', '晶晶', '欢欢', '妮妮', '娜娜', '锅锅'];
-  let contents = ['为什么你总是对我不理不睬呢', '干嘛老是不见你了', '我们都有字节的梦想', '你有什么资格不努力呢'];
-  let talktime = '刚刚';
-  console.log(talktime)
-  talks = talks.concat(that.data.talks);
+ //this.data.talks =this.data.talks.concat(this.data.times);
+  //console.log(this.data.talks)
   
-  // 随机产生10条评论
-  for (var i = 0; i < 10; i++) {
-   talks.push({
-   avatarUrl: faces[Math.floor(Math.random() * faces.length)],
-   nickName: names[Math.floor(Math.random() * names.length)],
-   content: contents[Math.floor(Math.random() * contents.length)],
-   talkTime: talktime
-   });
-  }
   this.setData({
-   talks: talks,
+   talks:this.data.talks,
    talksAnimationData: that.animation.export()
   })
   wx.hideNavigationBarLoading();
@@ -185,20 +204,60 @@ this.data.teacher=e.teacher;
   },
   //点击发布，发布评论
   faBu: function() {
+    if(this.data.names==undefined)
+    {wx.showToast({
+      title: '请先登录！',
+      icon: 'none',
+      duration: 2000
+    })
+  }
+    else{
   let that = this;
+  var timestamp = Date.parse(new Date());
+timestamp = timestamp / 1000;
+//获取当前时间
+var n = timestamp * 1000;
+var date = new Date(n);
+//年
+var Y = date.getFullYear();
+//月
+var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);
+//日
+var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+//时
+var h = date.getHours();
+//分
+var m = date.getMinutes();
+var times = Y+"-"+M+"-"+D+"-"+h+":"+m;
+this.setData({
+  time:times
+ })
+
   this.data.talks.unshift({
-   avatarUrl: this.data.faces[Math.floor(Math.random() * this.data.faces.length)],
-   nickName: this.data.names[Math.floor(Math.random() * this.data.names.length)],
-   content: this.data.inputValue,
-   talkTime: '刚刚'
+   avatarUrl: this.data.faces,
+   nickName: this.data.names,
+   comment: this.data.inputValue,
+   insert_time: this.data.time
   })
+   db.collection('comment').add({
+    data:{
+     comment:this.data.inputValue,
+     source_id:this.data.source_id,
+     nickName:this.data.names,
+     insert_time:this.data.time,
+     avatarUrl:this.data.faces
+    }
+})
+.then(res=>{
+    console.log(res)
+})
   that.data.inputValue = '';
   that.setData({
    talks: that.data.talks,
    inputValue: that.data.inputValue,
    talksAnimationData: that.animation.export()
   })
-  
-  }
+}
+}
  })
 

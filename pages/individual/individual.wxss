@@ -131,26 +131,19 @@ checkbox-group{
 }
 /* 头像 */
 .top_head {
-  margin-top: 30rpx;
+  margin-top: 50rpx;
   margin-left: 60rpx;
-  width: 180rpx; 
-  height: 180rpx; 
+  width: 200rpx; 
+  height: 200rpx; 
   border-radius: 100%; 
   border: 1px solid rgba(51, 51, 51, 1);
-}
-
-.top_text { 
- line-height: 40rpx;
- margin-left: 75rpx;
- color: rgb(118, 118, 118);
- font-size: 28rpx;
 }
 
 .name{
   line-height: 60rpx;
   width: 280rpx;
   height: 240rpx;
-  margin: 100rpx 90rpx;
+  margin: 120rpx 80rpx;
   font-size: 50rpx;
   text-align: center;
 }

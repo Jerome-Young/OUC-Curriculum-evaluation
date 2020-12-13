@@ -43,9 +43,9 @@
 <view class='talk-item-right'> 
 <view class='right-left'> 
 <text class='talk-item-nickname'>{{item.nickName}}</text> 
-<text class='talk-item-time'>{{item.talkTime}}</text> 
+<text class='talk-item-time'>{{item.insert_time}}</text> 
 </view> 
-<text class='talk-item-content'>{{item.content}}</text>
+<text class='talk-item-content'>{{item.comment}}</text>
  
  
 </view> 

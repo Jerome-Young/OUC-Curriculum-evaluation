@@ -67,8 +67,8 @@
           "scene": null
         },
         {
-          "name": "我的评论",
-          "pathName": "pages/personal/my_comment/my_comment",
+          "name": "设置",
+          "pathName": "pages/personal/install/install",
           "query": "",
           "scene": null
         }

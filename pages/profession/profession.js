@@ -1,34 +1,34 @@
 Page({
   data: {
-  showtab: 0, //顶部选项卡索引
-  tabnav: {
-  tabnum: 5,
-  tabitem: [
-  {
-  "id": 0,
-  "text": "计算机"
-  },
-  {
-  "id": 1,
-  "text": "保密管理"
-  },
-  {
-  "id": 2,
-  "text": "电子系"
-  },
-  {
-  "id": 3,
-  "text": "海洋技术"
-  },
-  {
-  "id": 4,
-  "text": "物理系"
-  },
-  {
-  "id": 5,
-  "text": "海洋科学"
-  }
-  ]
+    showtab: 0, //顶部选项卡索引
+    tabnav: {
+    tabnum: 5,
+    tabitem: [
+    {
+      "id": 0,
+      "text": "计算机"
+    },
+    {
+    "id": 1,
+    "text": "保密管理"
+    },
+    {
+    "id": 2,
+    "text": "电子系"
+    },
+    {
+    "id": 3,
+    "text": "海洋技术"
+    },
+    {
+    "id": 4,
+    "text": "物理系"
+    },
+    {
+    "id": 5,
+    "text": "海洋科学"
+    }
+    ]
   },
   productList: [],
   // tab切换
