@@ -1,0 +1,41 @@
+/* pages/personal/my_comment/my_comment.wxss */
+.tab_count{
+  width: 100%;
+  white-space:nowrap; 
+}
+
+.tab{
+  display: flex;
+  flex-direction: column;
+}
+
+.tab_nav{
+  padding-top: 40rpx;
+  /* padding-bottom: 25rpx; */
+  border-bottom: 1rpx solid #ddd;
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  line-height: 79rpx;
+  position: relative;
+}
+
+.tab_text{
+  min-width:50%;
+  max-width:50%;
+  text-align:center;
+  height: 80rpx;
+  background: #fff;
+}
+
+.tab_line {
+  position: absolute;
+  left: 0;
+  height: 1rpx;
+  top: 120rpx;
+  background: #000000;
+  transition: all 0.3s;
+  }
+
+  /* 我的评论 */
+  

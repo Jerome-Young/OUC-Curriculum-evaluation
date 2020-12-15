@@ -1,0 +1,16 @@
+<!-- 顶部导航条 -->
+<scroll-view scroll-x="true" class="tab_count">
+  <view class="tab">
+    <view class="tab_nav">
+          <view wx:for="{{tablist.tabitem}}" bindtap="tabset" data-tabindex="{{index}}" style="min-width:50%;max-width:50%;text-align:center;height: 80rpx;background: #fff;border-bottom:{{index>0?'1rpx solid #ddd;':''}}">{{item.text}}</view>
+    </view>
+    <view class="tab_line" style="width:50%;transform:translateX({{100*showtab}}%);"></view>
+  </view>
+</scroll-view>
+
+
+<!-- 评论主体 -->
+<scroll-view scroll-y="true" class="scroll-y">
+  <view>
+  </view>
+</scroll-view>

@@ -12,7 +12,11 @@
     "pages/gen_model/gen_model",
     "pages/user_feedback/user_feedback",
     "pages/detail/detail",
-    "pages/register/register"
+    "pages/register/register",
+    "pages/personal/install/install",
+    "pages/personal/my_comment/my_comment",
+    "pages/personal/news/news",
+    "pages/personal/contact_us/contact_us"
   ],
   "tabBar": {
     "color": "#FFFFFF",

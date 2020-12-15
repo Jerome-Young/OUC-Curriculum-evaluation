@@ -25,7 +25,7 @@
                 </view>
             </view>
             <!-- 搜索按钮,调用搜索查询方法 -->
-            <view class="search-bar__cancel-btn" bindtap='方法名a'>搜索</view>
+           
         </view>
     </view>
 </view>

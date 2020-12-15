@@ -1,0 +1,22 @@
+<!--pages/personal/install/install.wxml-->
+<view>
+
+  <!-- 头像 -->
+  <view class='flex-wrp-row head_container' bindtap="updatahead">
+    <view class='item-left flex-wrp-row'>
+      <text class='nav_text'>头像</text>
+    </view>
+    <view class='item-right flex-wrp-row'>
+      <image src='{{head_image}}' class='head_image' mode='aspectFit'></image>
+    </view>
+    <view class="listimage" style="background-image:url(../../../../../images/jinru.png);"></view>
+  </view>
+<!-- 手机号 -->
+  <view class="nav_container" bindtap="click_personal">
+    <view class="nav_text">
+      <view>手机号码</view>
+      <view>{{mobile}}</view>
+    </view>
+    <view class="listimage" style="background-image:url(../../../../../images/jinru.png);"></view>
+  </view>
+</view>

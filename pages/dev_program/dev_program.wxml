@@ -1,2 +1,68 @@
 <!--pages/dev_program/dev_program.wxml-->
-<text>计算机科学与技术培养方案：</text>
+<!--滚动标签一-->
+<scroll-view scroll-x="true" style='width: 100%; white-space:nowrap; '>
+  <!-- tab -->
+  <view class="tab">
+    <view class="tab-nav" style='font-size:12px'>
+    <view wx:for="{{tabnav.tabitem1}}" bindtap="setTab1" data-tabindex="{{index}}" style="min-width:20%;max-width:20%;text-align:center;height: 80rpx;background: #fff;border-bottom:{{index>4?'1rpx solid #ddd;':''}}">{{item.text}}</view>
+    <view>
+    <view class="tab-line" style="width:{{100/tabnav.tabnum1}}%;transform:translateX({{100*showtab1}}%);"></view>
+    </view>
+  </view>
+  </view>
+</scroll-view>
+<!--滚动标签二-->
+<scroll-view scroll-x="true" style='width: 100%; white-space:nowrap; '>
+  <!-- tab -->
+  <view class="tab">
+    <view class="tab-nav" style='font-size:12px'>
+    <view wx:for="{{tabnav.tabitem2}}" bindtap="setTab2" data-tabindex="{{index}}" style="min-width:33.3%;max-width:33.3%;text-align:center;height: 80rpx;background: #fff;border-bottom:{{index>4?'1rpx solid #ddd;':''}}">{{item.text}}</view>
+    <view>
+    <view class="tab-line" style="width:{{100/tabnav.tabnum2}}%;transform:translateX({{100*showtab2}}%);"></view>
+    </view>
+  </view>
+  </view>
+</scroll-view>
+
+<view>
+  <!--计算机-->
+  <view wx:if="{{currentTab1==0 && currentTab2==0}}" class="welcome">printf("Hello world!")<image src="../../images/dev_program/computer1.png" class='img'  mode='widthFix'></image><image src="../../images/dev_program/computer2.png" class='img'  mode='widthFix'></image><image src="../../images/dev_program/computer3.png" class='img'  mode='widthFix'></image><image src="../../images/dev_program/computer4.png" class='img'  mode='widthFix'></image><image class='img' mode='widthFix' src="../../images/dev_program/computer5.png"></image></view>
+  <view wx:if="{{currentTab1==0 && currentTab2==1}}" >
+  <view class="welcome">公共基础及通识教育层面<image src="../../images/dev_program/com_before1.png" class='img'  mode='widthFix'></image><image src="../../images/dev_program/com_before2.png" class='img'  mode='widthFix'></image></view>
+  <view class="welcome">专业教育层面——学科基础课程<image src="../../images/dev_program/com_before3.png" class='img' mode='widthFix'></image><image src="../../images/dev_program/com_before4.png" class='img'  mode='widthFix'></image></view>
+  <view class="welcome">专业教育层面——专业知识课程<image class='img' mode='widthFix' src="../../images/dev_program/com_before5.png"></image><image class='img' mode='widthFix' src="../../images/dev_program/com_before6.png"></image></view>
+  <view class="welcome">专业教育层面——工作技能课程<image class='img' mode='widthFix' src="../../images/dev_program/com_before7.png"></image></view>
+  </view>
+  <view wx:if="{{currentTab1==0 && currentTab2==2}}">
+  <view class="explain"  style="white-space:pre-wrap">
+  1.创新创业教育学分为非课程学分，其申请和认定按照《中国海洋大学大学生创新创业教育学分认定办法》（海大教字［2013］132 号）执行。
+
+
+  2.《数据结构与算法课程设计》的考核方式为：参加 CSP 认证并获得成绩高于 150 分（每年 3 次认证，毕业前获取学分即可）。
+  
+
+  3.专业修读课程推荐按照四个课程群开展，包括软件工程、智能媒体、系统结构、网络与信息安全 4 个课程群。
+
+
+  4.专业课程前面带“*”的为核心课程，作为必修课开设，不能用其他课程替代。
+
+
+  5.教育部卓越工程师培养计划学生必须修习《工程实习II》。
+
+
+  6.《计算机组成原理》从 2017 级开始设为必修课。
+
+
+  7.本培养方案由专业所在学院负责解释。
+  <image class='mytest'  src='../../images/dev_program/background.jpg'></image></view>
+  </view>
+
+  <!--保密管理-->
+  <view wx:if="{{currentTab1==1 && currentTab2==0}}" class="welcome">嘘！保密！<image src="../../images/dev_program/computer1.png" class='image'></image></view>
+  <view wx:if="{{currentTab1==1 && currentTab2==1}}" class="welcome">嘘！保密！<image src="../../images/dev_program/computer2.png" class='image'></image></view>
+  <view wx:if="{{currentTab1==1 && currentTab2==2}}" class="welcome">嘘！保密！<image src="../../images/dev_program/computer3.png" class='image'></image></view>
+  <!--
+  <view wx:if="{{currentTab==2}}" class="welcome">你要的在这里<image src="/images/computer1.png" class='image'></image></view>
+  <view wx:if="{{currentTab==3}}" class="welcome">你要的在这里<image src="/images/computer.1png" class='image'></image></view>
+  <view wx:if="{{currentTab==4}}" class="welcome">你要的在这里<image src="/images/computer1.png" class='image'></image></view>-->
+</view>

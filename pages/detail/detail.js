@@ -1,13 +1,14 @@
 const db=wx.cloud.database()//数据库初始化
+var app= getApp()
 
 Page({
   data: {
-    temp:'',
+  temp:'',
   talks: [],
   touchStart: 0,
   inputValue: '',
   inputBiaoqing: '',
-  faces: ['https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535727304160&di=0cc9d01a4ae2deca5634c3136d5c01f6&imgtype=0&src=http%3A%2F%2Fimg5q.duitang.com%2Fuploads%2Fitem%2F201406%2F12%2F20140612202753_u4nG5.jpeg', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535727304159&di=da2c1c4e868ee95f3cd65ffc6e24a456&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201505%2F01%2F20150501083603_yuTQc.jpeg', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535727304156&di=7d46a1482a8e798a70d8d52320285b02&imgtype=0&src=http%3A%2F%2Fup.enterdesk.com%2Fedpic_source%2F7b%2Ff9%2F01%2F7bf901db9091dff00a20d474c83afc45.jpg'],
+  faces: '',
   names: "匿名用户",
   isShow: false, //控制emoji表情是否显示 
   isLoad: true, //解决初试加载时emoji动画执行一次
@@ -34,38 +35,42 @@ Page({
   teacher:"",
   source_id:"",
   user_id:'',
-time:'',
-datatime:'',
+  time:'',
+  datatime:'',
   },
   
-  onLoad: function(e) {
-    console.log(e)
-this.data.classname=e.classname;
-this.data.teacher=e.teacher;
-    db.collection("class")
-    .where({//查询指令 条件筛选用where
-      classname:this.data.classname,
-      teacher:this.data.teacher
+onLoad: function(e) {
+  console.log(app.user_login)
+  this.setData({
+    names: app.user_login.head_name,
+    faces: app.user_login.head_image
+  })
+  this.data.classname=e.classname;
+  this.data.teacher=e.teacher;
+  db.collection("class")
+  .where({//查询指令 条件筛选用where
+    classname:this.data.classname,
+    teacher:this.data.teacher
+  })
+  .get()//获取数据
+  .then(res=>{//then可以让回调函数呈链式分布
+    console.log(res)
+    this.setData({
+      Teacher:res.data,
     })
-    .get()//获取数据
-    .then(res=>{//then可以让回调函数呈链式分布
-      console.log(res)
-      this.setData({
-        Teacher:res.data,
-      })
-    }) ,
-     db.collection("class").field({_id:true})
-    .where({//查询指令 条件筛选用where
-      classname:this.data.classname,
-      teacher:this.data.teacher
+  }) ,
+  db.collection("class").field({_id:true})
+  .where({//查询指令 条件筛选用where
+    classname:this.data.classname,
+    teacher:this.data.teacher
+  })
+  .get()//获取数据
+  .then(res=>{//then可以让回调函数呈链式分布
+    console.log(res)
+    this.setData({
+      source_id:res.data
     })
-    .get()//获取数据
-    .then(res=>{//then可以让回调函数呈链式分布
-      console.log(res)
-      this.setData({
-        source_id:res.data
-      })
-    })
+  })
   var em = {},
    that = this,
    emChar = that.data.emojiChar.split("-");
@@ -199,6 +204,14 @@ this.data.teacher=e.teacher;
   },
   //点击发布，发布评论
   faBu: function() {
+    if(this.data.names==undefined)
+    {wx.showToast({
+      title: '请先登录！',
+      icon: 'none',
+      duration: 2000
+    })
+  }
+    else{
   let that = this;
   var timestamp = Date.parse(new Date());
 timestamp = timestamp / 1000;
@@ -221,17 +234,18 @@ this.setData({
  })
 
   this.data.talks.unshift({
-   avatarUrl: this.data.faces[Math.floor(Math.random() * this.data.faces.length)],
-   nickName: this.data.names[Math.floor(Math.random() * this.data.names.length)],
+   avatarUrl: this.data.faces,
+   nickName: this.data.names,
    comment: this.data.inputValue,
-   talkTime: this.data.time
+   insert_time: this.data.time
   })
    db.collection('comment').add({
     data:{
      comment:this.data.inputValue,
-     account:this.data.names,
      source_id:this.data.source_id,
+     nickName:this.data.names,
      insert_time:this.data.time,
+     avatarUrl:this.data.faces
     }
 })
 .then(res=>{
@@ -243,7 +257,7 @@ this.setData({
    inputValue: that.data.inputValue,
    talksAnimationData: that.animation.export()
   })
-  
-  }
+}
+}
  })
 

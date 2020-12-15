@@ -1,4 +1,3 @@
-<!--滚动标签-->
 <scroll-view scroll-x="true" style='width: 100%; white-space:nowrap; '>
   <!-- tab -->
   <view class="tab">
@@ -7,18 +6,20 @@
     <view>
     <view class="tab-line" style="width:{{100/tabnav.tabnum}}%;transform:translateX({{100*showtab}}%);"></view>
     </view>
-  </view>
+   </view>
   </view>
 </scroll-view>
 
-<!-- 课程信息 -->
-<scroll-view scroll-y class="scroll-y">
-  <view class="text" bindtap="click_detail">
-    <view class="left-text">
-      <text>计算机网络\n</text>
-      <text class="teacher-text">教师：</text>
-    </view>
-    <view class="right-text">
+<view class='divider' />
+
+<view>
+  <view wx:if="{{currentTab==0}}" class="style-default">
+    <view class="text" bindtap="click_detail">
+       <view class="left-text">
+         <text>计算机网络\n</text>
+           <text class="teacher-text">教师：</text>
+           </view>
+         <view class="right-text">
       <text class="score-text">评分：</text>
     </view>
   </view>
@@ -67,8 +68,145 @@
       <text class="score-text">评分：</text>
     </view>
   </view>
-</scroll-view>
+</view>
+  
 
+  <view wx:if="{{currentTab==1}}" class="style-default">
+    <view class="text" bindtap="click_detail">
+       <view class="left-text">
+         <text>保密管理概论\n</text>
+           <text class="teacher-text">教师：</text>
+           </view>
+         <view class="right-text">
+      <text class="score-text">评分：</text>
+    </view>
+  </view>
+  <view class="text">
+    <view class="left-text">
+      <text>定密理论与实务\n</text>
+      <text class="teacher-text">教师：</text>
+    </view>
+    <view class="right-text">
+      <text class="score-text">评分：</text>
+    </view>
+  </view>
+  <view class="text">
+    <view class="left-text">
+      <text>管理学原理\n</text>
+      <text class="teacher-text">教师：</text>
+    </view>
+    <view class="right-text">
+      <text class="score-text">评分：</text>
+    </view>
+  </view>
+  <view class="text">
+    <view class="left-text">
+      <text>涉海保密实务\n</text>
+      <text class="teacher-text">教师：</text>
+    </view>
+    <view class="right-text">
+      <text class="score-text">评分：</text>
+    </view>
+   </view>
+  </view>
 
+  <view wx:if="{{currentTab==2}}" class="style-default">
+    <view class="text" bindtap="click_detail">
+       <view class="left-text">
+         <text>数字电路\n</text>
+           <text class="teacher-text">教师：</text>
+           </view>
+         <view class="right-text">
+      <text class="score-text">评分：</text>
+    </view>
+  </view>
+  <view class="text">
+    <view class="left-text">
+      <text>模拟电子技术\n</text>
+      <text class="teacher-text">教师：</text>
+    </view>
+    <view class="right-text">
+      <text class="score-text">评分：</text>
+    </view>
+  </view>
+  <view class="text">
+    <view class="left-text">
+      <text>单片机原理\n</text>
+      <text class="teacher-text">教师：</text>
+    </view>
+    <view class="right-text">
+      <text class="score-text">评分：</text>
+    </view>
+   </view>
+  </view>
 
-
+  <view wx:if="{{currentTab==3}}" class="style-default">
+    <view class="text" bindtap="click_detail">
+       <view class="left-text">
+         <text>大学物理Ⅰ\n</text>
+           <text class="teacher-text">教师：</text>
+           </view>
+         <view class="right-text">
+      <text class="score-text">评分：</text>
+    </view>
+   </view>
+  </view>
+  <view wx:if="{{currentTab==4}}" class="style-default">
+    <view class="text" bindtap="click_detail">
+       <view class="left-text">
+         <text>力学\n</text>
+           <text class="teacher-text">教师：</text>
+           </view>
+         <view class="right-text">
+      <text class="score-text">评分：</text>
+    </view>
+  </view>
+  <view class="text">
+    <view class="left-text">
+      <text>光学\n</text>
+      <text class="teacher-text">教师：</text>
+    </view>
+    <view class="right-text">
+      <text class="score-text">评分：</text>
+    </view>
+  </view>
+  <view class="text">
+    <view class="left-text">
+      <text>热学\n</text>
+      <text class="teacher-text">教师：</text>
+    </view>
+    <view class="right-text">
+      <text class="score-text">评分：</text>
+    </view>
+  </view>
+  <view class="text">
+    <view class="left-text">
+      <text>大学物理Ⅰ\n</text>
+      <text class="teacher-text">教师：</text>
+    </view>
+    <view class="right-text">
+      <text class="score-text">评分：</text>
+    </view>
+  </view>
+  <view class="text">
+    <view class="left-text">
+      <text>大学物理Ⅱ\n</text>
+      <text class="teacher-text">教师：</text>
+    </view>
+    <view class="right-text">
+      <text class="score-text">评分：</text>
+    </view>
+   </view>
+  </view>
+  <view wx:if="{{currentTab==5}}" class="style-default">
+    <view class="text" bindtap="click_detail">
+       <view class="left-text">
+         <text>海洋学\n</text>
+           <text class="teacher-text">教师：</text>
+           </view>
+         <view class="right-text">
+      <text class="score-text">评分：</text>
+    </view>
+   </view>
+  </view>
+</view>

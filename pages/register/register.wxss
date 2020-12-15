@@ -50,3 +50,7 @@ page {
   line-height: 90rpx;
   text-align: center;
 }
+
+.btn_hover{
+  background-color: rgb(105, 183 , 255);
+}

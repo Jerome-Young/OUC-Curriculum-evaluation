@@ -5,7 +5,7 @@
     "ignore": []
   },
   "setting": {
-    "urlCheck": true,
+    "urlCheck": false,
     "es6": true,
     "enhance": false,
     "postcss": true,
@@ -40,7 +40,7 @@
   "compileType": "miniprogram",
   "libVersion": "2.14.0",
   "appid": "wx48927e3350eea9a4",
-  "projectname": "program-master",
+  "projectname": "%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F",
   "debugOptions": {
     "hidedInDevtools": []
   },
@@ -67,8 +67,8 @@
           "scene": null
         },
         {
-          "name": "pages/detail/detail",
-          "pathName": "pages/detail/detail",
+          "name": "设置",
+          "pathName": "pages/personal/install/install",
           "query": "",
           "scene": null
         }

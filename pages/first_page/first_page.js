@@ -1,7 +1,9 @@
 var app = getApp()
+const db=wx.cloud.database()//数据库初始化
 Page({
   data: {
     userInfo: {},
+    sortclass:'',
     indicatorDots: true,
     autoplay: true,
     interval: 5000,
@@ -77,9 +79,25 @@ Page({
       url: '/pages/user_feedback/user_feedback',
     })
   },
+  hotsea(e){
+    wx.navigateTo({
+      url: '/pages/detail/detail?teacher='+e.currentTarget.dataset.teacher+'&classname='+e.currentTarget.dataset.classname,
+})
+  },
   onLoad: function () {
-    console.log('onLoad')
-    var that = this
+    
+    db.collection("class")
+    .orderBy(//orderBy进行排序
+      'love','desc')
+    .get()//获取数据
+    .then(res=>{//then可以让回调函数呈链式分布
+      console.log(res)
+      this.setData({
+        sortclass:res.data,
+      })
+    })
+  
+    
     //调用应用实例的方法获取全局数据
     // app.getUserInfo(function (userInfo) {
     //   //更新数据

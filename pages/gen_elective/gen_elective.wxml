@@ -1,17 +1,32 @@
 <!--pages/gen_elective/gen_elective.wxml-->
-<text class="cent" >通识选修</text>
-<form bindsubmit="Submit2">
+<!-- <form bindsubmit="Submit2">
 <input class="border-8" name="searchname" placeholder="请输入课程名称"></input>
 <button type="primary" form-type="submit">搜索</button>
 
-</form>
-<view wx:for="{{Teacher}}">
-  {{item.cname}}-
-  {{item.teacher}}
+</form> -->
+<view>
+     <view>
+        <view class="search-bar">
+            <view class="search-bar__form">
+            <!-- 搜索框 -->
+                <view class="search-bar__box">
+                    <icon class="search_in-box" type="search" size="14"></icon>
+                    <input type="text" class="search-bar__input" name="searchname" placeholder="请输入课程名称" bindinput="Submit2"/>
+                    <navigator wx:for="{{Teacher}}" url="/pages/detail/detail?classname={{item.classname}}&teacher={{item.teacher}}" open-type="navigate">
+                            {{item.classname}}-
+                             {{item.teacher}}
+                    </navigator>
+                </view>
+            </view>
+            <!-- 搜索按钮,调用搜索查询方法 -->
+          
+        </view>
+    </view>
 </view>
+
 <block>----------------------------------------------</block>
-<image src='../../img/gettopbutton.jpg' class='goTop' hidden='{{!floorstatus}}' bindtap="goTop"></image>
-<view style='background-color:green;'  wx:for="{{arr}}" class="border-4" style="flex-direction:column;"  >
+<image src='../../images/gettopbutton.jpg' class='goTop' hidden='{{!floorstatus}}' bindtap="goTop"></image>
+<view style='background-color:green;'  wx:for="{{Teacher}}" class="border-4" style="flex-direction:column;"  bindtap="click" data-teacher="{{item.teacher}}"data-classname="{{item.classname}}">
         <view  class="flex-item flex-item-V demo-text-1">课程名：{{item.classname}}
  </view>
         <view class="flex-item flex-item-V demo-text-2"> 教师：{{item.teacher}}</view>

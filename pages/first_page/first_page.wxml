@@ -40,7 +40,12 @@
 
   <view class='specialities_layout'>
       <view class='view_divider' />
-      <text class="specialities_text">热门搜索</text>
+      <text class="specialities_text">热门课程</text>
   </view>
+  <view style='background-color:green;'  wx:for="{{sortclass}}" class="border-4" style="flex-direction:column;" bindtap="hotsea" data-teacher="{{item.teacher}}"data-classname="{{item.classname}}">
+        <view >{{item.classname}}--{{item.teacher}}</view>
+        <view>----------------------------------------------</view>
+ </view>
+
   <image class='bottom-image' src=''/> 
 </scroll-view>

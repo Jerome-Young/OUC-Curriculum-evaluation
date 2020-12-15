@@ -1,5 +1,5 @@
 const db=wx.cloud.database()//数据库初始化
-const admin = db.collection("user");
+var app = getApp()
 
 Page({
   data: {
@@ -11,9 +11,29 @@ Page({
     isrememberpass: '',//是否记住密码
     account: '',//用户名
     password: '',//密码
-    login:false
+    login:false,
+    userListInfo: [{
+      icon: "../../images/pinglun.png",
+      text: '我的评论',
+      url: '/pages/personal/my_comment/my_comment'
+    },{
+      icon: "../../images/xiaoxi.png",
+      text: '消息',
+      url: '/pages/personal/news/news'
+    },{
+      icon: "../../images/lianxiwomen.png",
+      text: '联系我们',
+      url: '/pages/personal/contact_us/contact_us'
+    },{
+      icon: "../../images/shezhi.png",
+      text: '设置',
+      url: '/pages/personal/install/install'
+    }],
+    head_image: '../../images/默认头像.jpg',
+    showModal: false,
+    head_name: '小海'
   },
- 
+
 // 获取输入账号
   accountInput :function (e) {
     this.setData({
@@ -102,8 +122,12 @@ Page({
                   })
                   // 显示登陆成功后的页面样式
                   that.setData({
-                    login:true
+                    login: true,
+                    head_name: res.data[0].head_name,
+                    head_image: res.data[0].head_image
                   })
+                  // 登录状态传递给app.js
+                  app.user_login = that.data
                 }else{
                   wx.showToast({
                     title: '密码错误',
@@ -111,6 +135,10 @@ Page({
                     duration: 3000
                   })
                 }
+                that.setData({
+                  head_image: app.user_login.head_image,
+                  head_name: app.user_login.head_name
+                })
               }
             }
           })
@@ -138,6 +166,35 @@ Page({
     wx.navigateTo({
       url: '/pages/register/register',
     })
-  }
+  },
+
+  onLoad: function(){
+    var that = this
+    wx.getUserInfo(function(userInfo){
+      userInfo: userInfo
+    })
+  },
+
+  //点击事件 
+  click_personal(e){
+    wx.navigateTo({
+      url: e.currentTarget.dataset.go
+    })
+  },
+  // 注销
+  click_zhuxiao(){
+    wx.showToast({
+      title: '注销成功',
+      icon: 'none',
+      duration: 2000
+    })
+    this.setData({
+      login: false,
+      password: '',
+      account: ''
+    })
+    app.user_login = ''
+  },
+
 
 })
