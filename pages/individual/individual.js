@@ -17,10 +17,6 @@ Page({
       text: '我的评论',
       url: '/pages/personal/my_comment/my_comment'
     },{
-      icon: "../../images/xiaoxi.png",
-      text: '消息',
-      url: '/pages/personal/news/news'
-    },{
       icon: "../../images/lianxiwomen.png",
       text: '联系我们',
       url: '/pages/personal/contact_us/contact_us'
@@ -29,7 +25,7 @@ Page({
       text: '设置',
       url: '/pages/personal/install/install'
     }],
-    head_image: '../../images/默认头像.jpg',
+    head_image: 'cloud://test-env-8ger46eu356799f7.7465-test-env-8ger46eu356799f7-1304156061/默认头像.jpg',
     showModal: false,
     head_name: '小海'
   },
@@ -47,6 +43,7 @@ Page({
       password: e.detail.value
     })
   },
+
  
 // 登录
   bindGetUserInfo: function(e) {
@@ -86,7 +83,7 @@ Page({
         db.collection('user').where(parame)//查询语句
           .get({
             success: function(res) {
-              wx:wx.hideLoading();
+              wx.hideLoading();
               if (res.data == '') {//为空说明没有查到数据
                 wx.showToast({
                   title: '用户不存在',
@@ -104,7 +101,7 @@ Page({
                     // 勾选了则存储到本地缓存
                     wx.setStorage({
                       key: 'password',
-                      data: that.data.password,
+                      data: res.data[0].password,
                     })
                   } else { //不记住密码，删除缓存
                     wx.removeStorage({
@@ -114,7 +111,7 @@ Page({
                   }
                   wx.setStorage({ //存储用户名
                     key: 'account',
-                    data: that.data.account,
+                    data: res.data[0].account,
                   })
                   wx.setStorage({//存储用户的信息id，作为userId
                     key: 'userId',
@@ -123,11 +120,9 @@ Page({
                   // 显示登陆成功后的页面样式
                   that.setData({
                     login: true,
-                    head_name: res.data[0].head_name,
-                    head_image: res.data[0].head_image
                   })
                   // 登录状态传递给app.js
-                  app.user_login = that.data
+                  app.user_login = res.data[0]
                 }else{
                   wx.showToast({
                     title: '密码错误',
@@ -160,6 +155,7 @@ Page({
     this.setData({
       isrememberpass: e.detail.value
     })
+    app.isrempas = e.detail.value
   },
 
   register(){
@@ -173,6 +169,48 @@ Page({
     wx.getUserInfo(function(userInfo){
       userInfo: userInfo
     })
+    if(wx.getStorageSync('password')!=''){
+      app.isrempas = '1'
+      this.setData({
+        isrememberpass: '1'
+      })
+    }
+    if (app.isrempas != ''){
+      this.setData({
+        'items[0].checked': true
+      })
+    } else{
+      this.setData({
+        'items[0].checked': false
+      })
+    }
+  },
+
+  onShow: function(){
+    if(wx.getStorageSync('password')!=''){
+      app.isrempas = '1'
+    }
+    this.setData({
+      account: wx.getStorageSync('account'),
+      password: wx.getStorageSync('password')
+    })
+    if (app.isrempas != ''){
+      this.setData({
+        'items[0].checked': true
+      })
+    } else{
+      this.setData({
+        'items[0].checked': false
+      })
+    }
+    // 显示登陆成功后的页面样式
+    if(this.data.login==true){
+      this.setData({
+        head_name: app.user_login.head_name,
+        head_image: app.user_login.head_image
+      })
+    }
+    
   },
 
   //点击事件 
@@ -191,10 +229,30 @@ Page({
     this.setData({
       login: false,
       password: '',
-      account: ''
+      account: '',
+      'items[0].checked': false
+    })
+    wx.removeStorage({
+      key: 'password',
+      success: function(res) {},
+    })
+    wx.removeStorage({
+      key: 'account',
+      success: function(res) {},
+    })
+    wx.removeStorage({
+      key: 'userId',
+      success: function(res) {},
     })
     app.user_login = ''
+    app.isrempas = ''
   },
-
+  
+  //基本信息修改 
+  changeData: function(head_image){
+    this.setData({
+      head_image: head_image
+    })
+  }
 
 })

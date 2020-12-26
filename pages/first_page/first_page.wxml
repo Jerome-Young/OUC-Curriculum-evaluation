@@ -40,7 +40,12 @@
 
   <view class='specialities_layout'>
       <view class='view_divider' />
-      <text class="specialities_text">热门搜索</text>
+      <view class="specialities_text">热门课程</view>
   </view>
-  <image class='bottom-image' src=''/> 
+  <view class="class_list" wx:for="{{sortclass}}" bindtap="hotsea" data-id="{{item._id}}" data-starid="{{item.starid}}" data-people="{{item.people}}" data-love="{{item.love}}">
+    <text class="index">{{index+1}}.</text>
+    <view class="intro">{{item.classname}}--{{item.teacher}}</view>
+    <image src="cloud://test-env-8ger46eu356799f7.7465-test-env-8ger46eu356799f7-1304156061/程序配置图片/love.png" class="love"/>
+    <view class="lovenum">{{item.love}}</view>
+  </view>
 </scroll-view>

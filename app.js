@@ -48,6 +48,9 @@ App({
   globalData: {
     userInfo: null,
   },
-  user_login:''
+  // 用户登录状态
+  user_login:'',
+  // 是否记住密码
+  isrempas:''
 
 })

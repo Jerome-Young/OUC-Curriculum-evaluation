@@ -1,7 +1,9 @@
 var app = getApp()
+const db=wx.cloud.database()//数据库初始化
 Page({
   data: {
     userInfo: {},
+    sortclass:'',
     indicatorDots: true,
     autoplay: true,
     interval: 5000,
@@ -38,7 +40,8 @@ Page({
         "name": "用户反馈",
         "pic_url": '../../images/6.jpg'
       }
-    ]
+    ],
+    lovenum:0
   },
   //事件处理函数
   bindViewTap: function () {
@@ -77,14 +80,23 @@ Page({
       url: '/pages/user_feedback/user_feedback',
     })
   },
+  hotsea(e){
+    wx.navigateTo({
+      url: '/pages/detail/detail?id='+e.currentTarget.dataset.id+'&starid='+e.currentTarget.dataset.starid+'&peoplenum='+e.currentTarget.dataset.people+'&lovenum='+e.currentTarget.dataset.love,
+    })
+  },
   onLoad: function () {
-    //调用应用实例的方法获取全局数据
-    // app.getUserInfo(function (userInfo) {
-    //   //更新数据
-    //   that.setData({
-    //     userInfo: userInfo
-    //   })
-    //   that.update()
-    // })
+
+  },
+  onShow:function(){
+    db.collection("class")
+    .orderBy(//orderBy进行排序
+      'love','desc')
+    .get()//获取数据
+    .then(res=>{//then可以让回调函数呈链式分布
+      this.setData({
+        sortclass:res.data,
+      })
+    })
   }
 })

@@ -1,0 +1,4 @@
+<!--pages/personal/install_change/nickname_change/nickname_change.wxml-->
+<input class="nickname" value="{{nickname}}" bindinput="NicknameInput"/>
+<text class="note">昵称设置最多不能超过6个字哦~</text>
+<button class="restore_buttun" bindtap="restore" disabled="{{change}}">保存</button>

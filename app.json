@@ -1,5 +1,5 @@
 {
-  "pages": [
+  "pages": [ 
     "pages/first_page/first_page",
     "pages/search/search",
     "pages/individual/individual",
@@ -15,8 +15,10 @@
     "pages/register/register",
     "pages/personal/install/install",
     "pages/personal/my_comment/my_comment",
-    "pages/personal/news/news",
-    "pages/personal/contact_us/contact_us"
+    "pages/personal/contact_us/contact_us",
+    "pages/personal/install_change/nickname_change/nickname_change",
+    "pages/personal/install_change/mobile_change/mobile_change",
+    "pages/personal/install_change/password_change/password_change"
   ],
   "tabBar": {
     "color": "#FFFFFF",

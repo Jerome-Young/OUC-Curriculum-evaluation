@@ -1,7 +1,7 @@
 /* pages/account/account.wxss */
 .container {
   padding: 0px;
-  height: 650px;
+  height: auto;
 }
 .slide-image{
   display: block;
@@ -40,29 +40,53 @@
   display:flex;
   flex-wrap: wrap;
   width:100%;
+  height: 40rpx;
   flex-direction:row;
-  margin-left: 16px;
-  margin-top:16px;
-  margin-bottom: 16px;
+  margin-left: 30rpx;
+  margin-top:30rpx;
+  margin-bottom: 30rpx;
 }
 .view_divider{
   background: #EEA9B8;
+  padding-top: 14rpx;
   height: 40rpx;
   width:10rpx;
 }
 .specialities_text {
-  margin-left: 8px;
+  margin-left: 20rpx;
+  height: 100%;
   font-size: 16px;
-  height: auto;
-  width:auto;
-  margin-top: 6rpx;
 }
-.bottom-image{
-  height: 280rpx;
-  width:100%;
+/* 热门课程 */
+.class_list{
+  position: relative;
+  height: 50rpx;
+  padding: 20rpx 0 20rpx 30rpx;
+  margin-bottom: 10rpx;
+  border-bottom: 1rpx rgb(232, 232, 235) solid;
 }
-.Absolute-Center {
-margin: auto;
-position: absolute;
-top: 0; left: 0; bottom: 0; right: 0;
+
+.index{
+  margin-right: 20rpx;
+}
+
+.intro{
+  display: inline-block;
+  font-size: 36rpx;
+}
+
+.love{
+  float: right;
+  padding-top: 8rpx;
+  margin-right: 100rpx;
+  height: 40rpx;
+  width: 40rpx;
+}
+
+.lovenum{
+  position: absolute;
+  display: inline-block;
+  padding-top: 8rpx;
+  left: 88%;
+  font-size: 26rpx;
 }

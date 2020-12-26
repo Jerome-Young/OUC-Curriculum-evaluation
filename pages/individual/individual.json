@@ -1,3 +1,4 @@
 {
-  "navigationBarTitleText": "个人页面"   
+  "navigationBarTitleText": "个人页面",
+  "enablePullDownRefresh": true
 }

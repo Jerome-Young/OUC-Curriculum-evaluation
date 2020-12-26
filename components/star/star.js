@@ -4,7 +4,10 @@ Component({
    * 组件的属性列表
    */
   properties: {
- 
+    starid:{
+      type:Number,
+      value:0
+    }
   },
  
   /*
@@ -22,9 +25,11 @@ Component({
     }, {
       id: 5
     }],
-    starId: 5,
+    introduction:"",
     src1: 'https://img-blog.csdnimg.cn/20200708144629175.png',
     src2: 'https://img-blog.csdnimg.cn/20200708144629178.png',
+    showbutton:"",
+    select:'select'
   },
  
   /**
@@ -32,11 +37,51 @@ Component({
    */
   methods: {
     select(e) {
-      console.log(e)
-      this.data.starId = e.currentTarget.dataset.index;
       this.setData({
-        starId: this.data.starId
+        starid:e.currentTarget.dataset.index
       })
+      switch(e.currentTarget.dataset.index){
+        case(5):{
+          this.setData({
+          introduction:"强烈推荐"
+        })
+          break;
+        }
+        
+        case(4):{
+          this.setData({
+            introduction:"敬业"
+          })
+          break;
+        }
+
+        case(3):{
+          this.setData({
+          introduction:"合格"
+        })
+        break;
+        }
+        
+        case(2):{
+          this.setData({
+          introduction:"不推荐"
+        })
+        break;
+        }
+        
+        case(1):{
+          this.setData({
+          introduction:"差"
+        })
+        break;
+        }
+        
+      }
+      this.triggerEvent("usersubmit",{
+        showbutton:true,
+        starid:this.data.starid,
+        select:this.data.select
+      });
     }
   }
 })

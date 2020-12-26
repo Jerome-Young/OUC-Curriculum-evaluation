@@ -1,3 +1,10 @@
+<wxs module="m1">
+  var numberToFix= function (value) {
+       var decimal = parseFloat(value).toFixed(2);
+       return decimal;
+  }
+ module.exports.numberToFix=numberToFix;
+</wxs>
 
 <view wx:for="{{Teacher}}">
        <!-- 课程名称 -->
@@ -6,13 +13,22 @@
               <!-- 课本封面 -->
               <image src="../../images/高等数学Ⅰ1.jpg" class="cover-image" />
               <view class="teacher">授课教师：{{item.teacher}}</view>
-              <view class="love">评分：{{item.love}}</view>
+              <view class="love" hidden="{{Ishidden}}">评分：{{m1.numberToFix(item.starid)}}</view>
+              <view class="love" hidden="{{!Ishidden}}">评分：{{m1.numberToFix(starsave)}}</view>
+              <view class="introduction">{{item.introduction}} </view>
+               <view class="register">是否签到：{{item.register}} </view>
        </view>
        <!-- 引用自定义组件 -->
        <view class="star">
-       <star></star>
+              <star starid="{{item.starid}}" bindusersubmit="handlesubmit"></star>
+              <button wx:if="{{showbutton}}" bindtap="handlestar">提交</button>
        </view>
 </view>
+
+<button bindtap='Showlove' >赞{{lovesave}}</button>
+
+
+
 <view class="showtalks"> 
 <button bindtap='showTalks'>查看评论</button> 
 </view>

@@ -22,7 +22,7 @@
     <!--按钮-->
     <view class="loginBtnView">
       <checkbox-group bindchange="checkboxChange">
-        <label class="checkbox" wx:for="{{items}}" wx:key='this'>
+        <label class="checkbox" wx:for="{{items}}" wx:key="this">
         <checkbox value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
         </label>
       </checkbox-group>

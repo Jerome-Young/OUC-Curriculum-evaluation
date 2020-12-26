@@ -1,29 +1,32 @@
 var app = getApp()
 const db=wx.cloud.database()
+
 Page({
   data: {
-    userListInfo: [{
-      text: '手机号码',
-      url: ''
-    },{
-      icon: "",
-      text: '匿名',
-      url: ''
-    },{
-      icon: "",
-      text: '修改密码',
-      url: ''
-    }],
-    head_image:'../../../images/默认头像.jpg'//默认图片，设置为空也可以
+    head_image:'cloud://test-env-8ger46eu356799f7.7465-test-env-8ger46eu356799f7-1304156061/默认头像.jpg',//默认图片，设置为空也可以
+    head_name:'小海',
+    mobile:'',
+    password:''
   },
   onLoad: function(){
     this.setData({
-      head_image: app.user_login.head_image
+      head_image: app.user_login.head_image,
+      head_name: app.user_login.head_name,
+      mobile: app.user_login.mobile,
     })
   },
+
+  onShow: function(){
+    this.setData({
+      head_image: app.user_login.head_image,
+      head_name: app.user_login.head_name,
+      mobile: app.user_login.mobile,
+    })
+  },
+
+  // 更改头像
   updatahead() {
     let that = this;
-    let openid = wx.getStorageSync('openid');
     wx.chooseImage({
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
@@ -51,18 +54,22 @@ Page({
             .update({
               data: {
                 head_image: fileID
-              }
-            })
-            .get({
-              success: function (res) {
+              },
+              success: function (e) {
                 wx.showToast({
-                  title: '图片存储成功',
+                  title: '头像修改成功',
                   'icon': 'none',
                   duration: 3000
                 })
-                that.setData({
-                  head_image: res.data[0].head_image
+                db.collection('comment').where({
+                  user_id:app.user_login._id
                 })
+                .update({
+                  data:{
+                    avatarUrl: res.fileID
+                  }
+                })
+                app.user_login.head_image = res.fileID
               },
               fail: function () {
                 wx.showToast({
@@ -78,9 +85,29 @@ Page({
           },
           complete: () => {
             wx.hideLoading()
-          }
+          },
+          
         });
       }
     })
+  },
+  // 更改昵称
+  updataname(){
+    wx.navigateTo({
+      url: '../install_change/nickname_change/nickname_change',
+    })
+  },
+  
+  updatamobile(){
+    wx.navigateTo({
+      url: '../install_change/mobile_change/mobile_change',
+    })
+  },
+
+  updatapassword(){
+    wx.navigateTo({
+      url: '../install_change/password_change/password_change',
+    })
   }
+
 })

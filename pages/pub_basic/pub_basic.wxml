@@ -1,61 +1,11 @@
 <!-- 横向滑动列表 -->
-<view class="kind_contain">
+<view class="kind_contain" wx:for="{{class_list}}" wx:key="id" wx:for-index="class_listindex">
   <view>
-    <view class="nav-text">数学</view>
+      <view class="nav-text">{{item.title}}</view>
   </view>
-  <scroll-view scroll-x class="scroll-x" scroll-with-animation scroll-left="{{scrollLeft_math}}rpx">
-    <view class="view-parent" wx:for="{{math_list}}" wx:key="id" bindtap="collegeSelect_math" data-id="{{index}}" data-txt="{{item.txt}}">
-      <view class="view-item {{index==collegeCur_math+1?'tab-on':''}}">{{item.txt}}</view>
-    </view>
-  </scroll-view>
-</view>
-<view class="kind_contain">
-  <view>
-    <view class="nav-text">物理</view>
-  </view>
-  <scroll-view scroll-x class="scroll-x" scroll-with-animation scroll-left="{{scrollLeft_physic}}rpx">
-    <view class="view-parent" wx:for="{{physic_list}}" wx:key="id" bindtap="collegeSelect_physic" data-id="{{index}}" data-txt="{{item.txt}}">
-      <view class="view-item {{index==collegeCur_physic+1?'tab-on':''}}">{{item.txt}}</view>
-    </view>
-  </scroll-view>
-</view>
-<view class="kind_contain">
-  <view>
-    <view class="nav-text">外语</view>
-  </view>
-  <scroll-view scroll-x class="scroll-x" scroll-with-animation scroll-left="{{scrollLeft_english}}rpx">
-    <view class="view-parent" wx:for="{{english_list}}" wx:key="id" bindtap="collegeSelect_english" data-id="{{index}}" data-txt="{{item.txt}}">
-      <view class="view-item {{index==collegeCur_english+1?'tab-on':''}}">{{item.txt}}</view>
-    </view>
-  </scroll-view>
-</view>
-<view class="kind_contain">
-  <view>
-    <view class="nav-text">政治</view>
-  </view>
-  <scroll-view scroll-x class="scroll-x" scroll-with-animation scroll-left="{{scrollLeft_politic}}rpx">
-    <view class="view-parent" wx:for="{{politic_list}}" wx:key="id" bindtap="collegeSelect_politic" data-id="{{index}}" data-txt="{{item.txt}}">
-      <view class="view-item {{index==collegeCur_politic+1?'tab-on':''}}">{{item.txt}}</view>
-    </view>
-  </scroll-view>
-</view>
-<view class="kind_contain">
-  <view>
-    <view class="nav-text">体育</view>
-  </view>
-  <scroll-view scroll-x class="scroll-x" scroll-with-animation scroll-left="{{scrollLeft_sport}}rpx">
-    <view class="view-parent" wx:for="{{sport_list}}" wx:key="id" bindtap="collegeSelect_sport" data-id="{{index}}" data-txt="{{item.txt}}">
-      <view class="view-item {{index==collegeCur_sport+1?'tab-on':''}}">{{item.txt}}</view>
-    </view>
-  </scroll-view>
-</view>
-<view class="kind_contain">
-  <view>
-    <view class="nav-text">其他</view>
-  </view>
-  <scroll-view scroll-x class="scroll-x" scroll-with-animation scroll-left="{{scrollLeft_other}}rpx">
-    <view class="view-parent" wx:for="{{other_list}}" wx:key="id" bindtap="collegeSelect_other" data-id="{{index}}" data-txt="{{item.txt}}">
-      <view class="view-item {{index==collegeCur_other+1?'tab-on':''}}">{{item.txt}}</view>
+  <scroll-view scroll-x class="scroll-x" scroll-with-animation scroll-left="{{class_list[class_listindex].scrollLeft}}">
+    <view class="view-parent" wx:for="{{item.list_detail}}" wx:for-item="cell" wx:for-index="cellindex" bindtap="{{item.collegeSelect}}" data-txt="{{cell.txt}}" data-id="{{cellindex}}">
+      <view class="view-item {{cellindex==class_list[class_listindex].collegeCur+1?'tab-on':''}}">{{cell.txt}}</view>
     </view>
   </scroll-view>
 </view>
@@ -65,7 +15,7 @@
 <!-- 课程信息 -->
 <scroll-view scroll-y class="scroll-y">
   <view class="text" wx:for="{{Teacher}}">
-    <view class="left-text" bindtap="click_detail" data-teacher="{{item.teacher}}" data-classname="{{item.classname}}">
+    <view class="left-text" bindtap="click_detail" data-id="{{item._id}}" data-starid="{{item.starid}}" data-people="{{item.people}}" data-love="{{item.love}}">
       <view>{{item.classname}}\n</view>
       <view class="teacher-text">教师：{{item.teacher}}</view>
     </view>

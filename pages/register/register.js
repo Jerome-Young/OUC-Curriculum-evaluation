@@ -122,7 +122,7 @@ Page({
                               password: that.data.password, //密码
                               time: time, //创建时间
                               head_name:'小海',
-                              head_image:'../../images/默认头像.jpg'
+                              head_image:'cloud://test-env-8ger46eu356799f7.7465-test-env-8ger46eu356799f7-1304156061/默认头像.jpg'
                             },
                             success: function(res) {
                               if (res.errMsg == 'collection.add:ok') { //接口调取成功，也就是注册成功

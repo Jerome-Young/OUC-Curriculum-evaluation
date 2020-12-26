@@ -2,21 +2,45 @@
 <view>
 
   <!-- 头像 -->
-  <view class='flex-wrp-row head_container' bindtap="updatahead">
-    <view class='item-left flex-wrp-row'>
+  <view class='nav_container' bindtap="updatahead">
+    <view class='item-left'>
       <text class='nav_text'>头像</text>
     </view>
-    <view class='item-right flex-wrp-row'>
+    <view>
       <image src='{{head_image}}' class='head_image' mode='aspectFit'></image>
     </view>
     <view class="listimage" style="background-image:url(../../../../../images/jinru.png);"></view>
   </view>
 <!-- 手机号 -->
-  <view class="nav_container" bindtap="click_personal">
+  <view class="nav_container nav_add" bindtap="updatamobile">
     <view class="nav_text">
-      <view>手机号码</view>
-      <view>{{mobile}}</view>
+      <text>手机号码</text>
+      <text class="text_detail">{{phone.toHide(mobile)}}</text>
     </view>
     <view class="listimage" style="background-image:url(../../../../../images/jinru.png);"></view>
   </view>
+<!-- 昵称 -->
+  <view class="nav_container nav_add" bindtap="updataname">
+    <view class="nav_text">
+      <text>昵称</text>
+      <text class="text_detail">{{head_name}}</text>
+    </view>
+    <view class="listimage" style="background-image:url(../../../../../images/jinru.png);"></view>
+  </view>
+<!-- 密码 -->
+  <view class="nav_container nav_add" bindtap="updatapassword">
+    <view class="nav_text">
+      <view>修改密码</view>
+    </view>
+    <view class="listimage" style="background-image:url(../../../../../images/jinru.png);"></view>
+  </view>
+
 </view>
+
+<wxs module="phone">
+var toHide = function(array) {
+  var mphone = array.substring(0, 3) + '****' + array.substring(7);
+  return mphone;
+}
+module.exports.toHide = toHide;
+</wxs>

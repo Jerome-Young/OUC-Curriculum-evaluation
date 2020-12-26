@@ -1,7 +1,7 @@
 /* pages/pub_basic/pub_basic.wxss */
 /* 横向滑动列表 */
 .scroll-x{
-  height:50px;
+  height:100rpx;
   white-space:nowrap;
   display:flex;
 }
@@ -24,23 +24,12 @@
 .view-parent{
   display:inline-block;
 }
-.view-item{
-  width:120px;
-  height:30px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:12px;
-  font-style:#222;
-  background:rgb(1,168,236);
-  margin:10px;
-  box-shadow: 1px 1px 2px 1px rgba(0,0,0, 0.15);
-}
 
 .nav-text {
-  width:60px;
-  height:30px;
-  font-size:14px;
+  width:120rpx;
+  height:60rpx;
+  margin:0 16rpx;
+  font-size:28rpx;
   font-weight: bold;
   display: flex;
   align-items: center;
@@ -50,11 +39,24 @@
   background-color: rgb(180,180,180);
 }
 
+.view-item{
+  width:240rpx;
+  height:60rpx;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28rpx;
+  font-style:#222;
+  background:rgb(1,168,236);
+  margin:20rpx;
+  box-shadow: 1rpx 1rpx 2rpx 1rpx rgba(0,0,0, 0.15);
+}
+
 .tab-on {
   color: #000;
-  font-size: 32rpx !important;
+  font-size: 28rpx;
   font-weight: 600;
-  border-bottom: 4rpx solid #915cbd !important;
+  border-bottom: 4rpx solid #915cbd;
 }
 /* 分割线 */
 .divider{
@@ -69,21 +71,21 @@
 .left-text{
   display: inline-block;
   text-align: left;
-  padding-left: 10px;
-  height: 50px;
-  font-size: 16px;
+  padding-left: 20rpx;
+  height: 100rpx;
+  font-size: 32rpx;
   font-weight: bolder;
 }
 .teacher-text{
-  font-size: 14px;
+  font-size: 28rpx;
   font-weight: 500;
 }
 .right-text{
   /* display: inline-block; */
   text-align: right;
-  padding-right: 20px;
+  padding-right: 40rpx;
 }
 .score-text{
-  font-size: 14px;
+  font-size: 28rpx;
   font-weight: 500;
 }

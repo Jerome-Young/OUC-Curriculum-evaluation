@@ -33,9 +33,11 @@
     "useIsolateContext": true,
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
+    "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
-    "minifyWXSS": true
+    "minifyWXSS": true,
+    "bundle": false
   },
   "compileType": "miniprogram",
   "libVersion": "2.14.0",
@@ -48,6 +50,7 @@
   "isGameTourist": false,
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
   "condition": {
     "plugin": {
       "list": []
@@ -61,14 +64,14 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/individual/individual",
-          "pathName": "pages/individual/individual",
+          "name": "pages/pub_basic/pub_basic",
+          "pathName": "pages/pub_basic/pub_basic",
           "query": "",
           "scene": null
         },
         {
-          "name": "设置",
-          "pathName": "pages/personal/install/install",
+          "name": "pages/personal/install_change/password_change/password_change",
+          "pathName": "pages/personal/install_change/password_change/password_change",
           "query": "",
           "scene": null
         }

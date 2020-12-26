@@ -37,38 +37,40 @@ Page({
   user_id:'',
   time:'',
   datatime:'',
+  Teacher:"",
+  idsave:"",
+  starsave:0,
+  peoplesave:0,
+  showbutton:false,
+  starnum:0,
+  currentscore:"",
+  lovesave:0,
+  Ishidden:false,
+  select:''
   },
   
 onLoad: function(e) {
-  console.log(app.user_login)
+  if(app.user_login.star.indexOf(this.data.idsave)>=0){
+    this.setData({
+      select:'null'
+    })
+  }
   this.setData({
     names: app.user_login.head_name,
-    faces: app.user_login.head_image
+    faces: app.user_login.head_image,
+    idsave:e.id,
+    starsave:e.starid,
+    peoplesave:e.peoplenum,
+    lovesave:e.lovenum
   })
-  this.data.classname=e.classname;
-  this.data.teacher=e.teacher;
   db.collection("class")
   .where({//查询指令 条件筛选用where
-    classname:this.data.classname,
-    teacher:this.data.teacher
+   _id:e.id
   })
   .get()//获取数据
   .then(res=>{//then可以让回调函数呈链式分布
-    console.log(res)
     this.setData({
       Teacher:res.data,
-    })
-  }) ,
-  db.collection("class").field({_id:true})
-  .where({//查询指令 条件筛选用where
-    classname:this.data.classname,
-    teacher:this.data.teacher
-  })
-  .get()//获取数据
-  .then(res=>{//then可以让回调函数呈链式分布
-    console.log(res)
-    this.setData({
-      source_id:res.data
     })
   })
   var em = {},
@@ -85,7 +87,8 @@ onLoad: function(e) {
   that.setData({
    emojis: emojis
   })
-  },
+  
+},
   //解决滑动穿透问题
   emojiScroll: function(e) {
   console.log(e)
@@ -147,7 +150,7 @@ onLoad: function(e) {
   loadTalks: function(e) {
   // 随机产生一些评论
   wx.showNavigationBarLoading();
-  let temp=this.data.source_id;
+  let temp=this.data.idsave;
   //获取评论
   db.collection("comment")
   .where({//查询指令 条件筛选用where
@@ -242,10 +245,11 @@ this.setData({
    db.collection('comment').add({
     data:{
      comment:this.data.inputValue,
-     source_id:this.data.source_id,
+     source_id:this.data.idsave,
      nickName:this.data.names,
      insert_time:this.data.time,
-     avatarUrl:this.data.faces
+     avatarUrl:this.data.faces,
+     user_id:app.user_login._id
     }
 })
 .then(res=>{
@@ -258,6 +262,163 @@ this.setData({
    talksAnimationData: that.animation.export()
   })
 }
-}
- })
+},
+
+//赞加一并上传
+  Showlove:function(){
+    var that=this
+    if(this.data.names==undefined){
+      wx.showToast({
+        title: '请先登录！',
+        icon: 'none',
+        duration: 2000
+      })
+    }else{
+      db.collection("user")
+      .where({
+        _id: app.user_login._id,
+        love: app.user_login.love
+      })
+      .get()
+      .then(res=>{
+        var User=res;
+        if(User.data[0].love.indexOf(that.data.idsave)>=0) {
+          wx.showToast({
+            title: '您已经评价过该课程！',
+            icon: 'none',
+            duration: 2000
+          })
+        }else{
+          db.collection("user")
+          .where({
+            _id:app.user_login._id
+          })
+          .update({
+            data:{
+              love:db.command.push(that.data.idsave)
+            },
+            success:function(){
+              db.collection('user')
+              .where({
+                _id:app.user_login._id
+              })
+              .get({
+                success: function(a){
+                  app.user_login = a.data[0]
+                }
+              })
+              that.setData({
+                lovesave:++that.data.lovesave
+              })
+              wx.cloud.callFunction({
+                name:'loveadd',
+                data:{
+                    id:that.data.idsave,
+                },
+                success:function(){
+                  console.log("success upload love")
+                },
+                fail:function(){console.error}
+              })
+            }
+          })
+        }
+      })
+    }
+  },
+//从页面上拿取星星数
+handlesubmit(e){
+  if(app.user_login.star.indexOf(this.data.idsave)>=0){
+    this.setData({
+      starnum:this.data.starsave
+    })
+  }else{
+    this.setData({
+      showbutton:e.detail.showbutton,
+      starnum:e.detail.starid
+    })
+  }
+},
+
+//计算平均数并上传
+  handlestar(){
+    var that=this
+    if(this.data.names==undefined){
+      wx.showToast({
+        title: '请先登录！',
+        icon: 'none',
+        duration: 2000
+      })
+    }else{
+      db.collection("user")
+      .where({
+        _id: app.user_login._id,
+        star: app.user_login.star,
+      })
+      .get()
+      .then(res=>{
+        var User=res;
+        if(User.data[0].star.indexOf(that.data.idsave)>=0) {
+          wx.showToast({
+            title: '您已经评价过该课程！',
+            icon: 'none',
+            duration: 2000
+          })
+        }else{
+          db.collection("user")
+          .where({
+            _id:app.user_login._id
+          })
+          .update({
+            data:{
+              star:db.command.push(that.data.idsave)
+            },
+            success:function(){
+              db.collection('user')
+              .where({
+                _id:app.user_login._id
+              })
+              .get({
+                success: function(a){
+                  app.user_login = a.data[0]
+                }
+              })
+            }
+          })
+          //按钮隐藏
+          that.setData({
+            showbutton:false,
+            Ishidden:true,
+            starsave:[that.data.starsave*that.data.peoplesave+that.data.starnum]/(++that.data.peoplesave),
+            peoplesave:++that.data.peoplesave//评价人数
+          })
+
+          //上传数据
+          wx.cloud.callFunction({
+            name:'peopleadd',
+            data:{
+              id:this.data.idsave,
+            },
+            success:function(){
+              console.log("success upload people")
+            },
+            fail:function(){console.error}
+          })
+
+          wx.cloud.callFunction({
+            name:'uploadscore',
+            data:{
+              id:this.data.idsave,
+              currentscore:this.data.starsave
+            },
+            success:function(){
+              console.log("success upload star")
+            },
+            fail:function(){console.error}
+          })
+        }
+      })
+    }
+  }
+})
 

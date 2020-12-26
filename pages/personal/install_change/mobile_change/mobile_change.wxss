@@ -1,0 +1,31 @@
+/* 图片 */
+.image_container{
+  display: flex;
+  justify-content: center;
+}
+
+.head_image{
+  width: 70%;
+}
+
+/* 手机号显示 */
+.text_container{
+  margin-top: 60rpx;
+  text-align: center;
+}
+.mobile_text{
+  font-weight: bolder;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: medium;
+}
+
+/* 更换按钮 */
+.change_buttun{
+  border-radius: 100rpx;
+  width: 200rpx;
+  height: 70rpx;
+  margin-top: 50rpx;
+  line-height: 70rpx;
+  font-size: small;
+  border: 1rpx solid rgb(98, 90, 233);
+}

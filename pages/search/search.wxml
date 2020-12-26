@@ -18,7 +18,7 @@
                 <view class="search-bar__box">
                     <icon class="search_in-box" type="search" size="14"></icon>
                     <input type="text" class="search-bar__input" name="searchname" placeholder="请输入搜索内容" bindinput="MYinput"/>
-                    <navigator wx:for="{{Teacher}}" url="/pages/detail/detail?classname={{item.classname}}&teacher={{item.teacher}}" open-type="navigate">
+                    <navigator wx:for="{{Teacher}}" url="/pages/detail/detail?id={{item._id}}&starid={{item.starid}}&peoplenum={{item.people}}&lovenum={{item.love}}" open-type="navigate">
                             {{item.classname}}-
                              {{item.teacher}}
                     </navigator>
