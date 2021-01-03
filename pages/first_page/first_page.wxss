@@ -53,6 +53,7 @@
   width:10rpx;
 }
 .specialities_text {
+  position: absolute;
   margin-left: 20rpx;
   height: 100%;
   font-size: 16px;
@@ -86,7 +87,7 @@
 .lovenum{
   position: absolute;
   display: inline-block;
-  padding-top: 8rpx;
+  padding-top: 10rpx;
   left: 88%;
   font-size: 26rpx;
 }

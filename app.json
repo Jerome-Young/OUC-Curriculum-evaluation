@@ -1,5 +1,5 @@
 {
-  "pages": [ 
+  "pages": [
     "pages/first_page/first_page",
     "pages/search/search",
     "pages/individual/individual",
@@ -21,28 +21,28 @@
     "pages/personal/install_change/password_change/password_change"
   ],
   "tabBar": {
-    "color": "#FFFFFF",
-    "selectedColor": "#000000",
+    "color": "#000000",
+    "selectedColor": "#FFFFFF",
     "backgroundColor": "#6495ED",
     "borderStyle": "white",
     "list": [
       {
         "pagePath": "pages/first_page/first_page",
         "text": "首页",
-        "iconPath": "images/ship.jpg",
-        "selectedIconPath": "images/ship.jpg"
+        "iconPath": "images/首页.png",
+        "selectedIconPath": "images/首页.png"
       },
       {
         "pagePath": "pages/search/search",
         "text": "搜索",
-        "iconPath": "images/ship.jpg",
-        "selectedIconPath": "images/ship.jpg"
+        "iconPath": "images/搜索.png",
+        "selectedIconPath": "images/搜索.png"
       },
       {
         "pagePath": "pages/individual/individual",
         "text": "我的",
-        "iconPath": "images/ship.jpg",
-        "selectedIconPath": "images/ship.jpg"
+        "iconPath": "images/我的.png",
+        "selectedIconPath": "images/我的.png"
       }
     ]
   },
@@ -53,5 +53,6 @@
     "backgroundColor": "#eeeeee",
     "backgroundTextStyle": "light"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "cloud": true
 }

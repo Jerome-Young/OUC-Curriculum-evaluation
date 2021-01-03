@@ -1,2 +1,6 @@
-<!--pages/personal/contact_us/contact_us.wxml-->
-<text>pages/personal/contact_us/contact_us.wxml</text>
+<view>
+  <text>如有问题，欢迎发送邮件</text>
+</view>
+<view>
+  <text>邮箱：</text>
+</view>

@@ -1,38 +1,101 @@
 /* pages/detail/detail.wxss */
+page{
+  background: linear-gradient(180deg,white 50%, rgb(161, 197, 241));
+}
+
 
 .classname{
-  height: 35px;
+  height: 80rpx;
   width: 100%;
   text-align: center;
   justify-content:center;
   align-items: center;
-  margin-top: 15px;
+  margin-top: 30rpx;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 40rpx;
   border-bottom: 1rpx solid #000;
 }
+
+.classdetail{
+  position: relative;
+  font-size: 40rpx;
+}
+
 /* 封面图片 */
 .cover-image{
-  height: 200px;
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+  height: 450rpx;
   width:45%;
   float: left;
 }
 /* 详情 */
 .teacher{
-  margin-top: 20px;
+  left: 20rpx;
+  margin-top: 60rpx;
   display: inline-block;
-  margin-left: 25px;
+  margin-left: 40rpx;
 }
 .love{
-  margin-top: 20px;
+  margin-top: 40rpx;
   display: inline-block;
-  margin-left: 25px;
+  margin-left: 40rpx;
 }
+
+/* 评价 */
+.introduction{
+  position: absolute;
+  display: block;
+  top: 530rpx;
+  left: 20rpx;
+}
+
+/* 是否签到 */
+.register{
+  position: absolute;
+  display: block;
+  top: 600rpx;
+  left: 20rpx;
+}
+
+/* 自定义星星 */
 .star{
-  margin-top: 140px;
+  margin-top: 80rpx;
+  display: inline-block;
+  margin-left: 30rpx;
 }
+
+/* 赞 */
+.love_image{
+  display: inline-block;
+  height: 45rpx;
+  width: 45rpx;
+  margin-top: 40rpx;
+  margin-left: 40rpx;
+}
+
+.lovenum{
+  position: absolute;
+  display: inline;
+  padding-top: 40rpx;
+  padding-left: 20rpx;
+  text-align: center;
+  font-size: 32rpx;
+}
+
+/* 查看评论按钮 */
 .showtalks{
-  /* margin-top: 100px; */
+  position: relative;
+  margin-top: 350rpx;
+  border-radius: 100rpx;
+  color: rgb(24, 144, 255);
+  border-width: 1rpx 1rpx 1rpx 1rpx;
+  border-color: rgb(24, 144, 255);
+  border-style: solid;
+  text-align: center;
+  width:400rpx;
+  height: 90rpx;
+  line-height: 90rpx;
 }
 
 page { 

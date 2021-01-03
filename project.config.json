@@ -13,7 +13,7 @@
     "minified": true,
     "newFeature": false,
     "coverView": true,
-    "nodeModules": false,
+    "nodeModules": true,
     "autoAudits": false,
     "showShadowRootInWxmlPanel": true,
     "scopeDataCheck": false,
@@ -30,17 +30,17 @@
       "outputPath": ""
     },
     "enableEngineNative": false,
+    "bundle": false,
     "useIsolateContext": true,
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
     "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
-    "minifyWXSS": true,
-    "bundle": false
+    "minifyWXSS": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.14.0",
+  "libVersion": "2.14.1",
   "appid": "wx95dd24709faf1856",
   "projectname": "%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F",
   "debugOptions": {
@@ -70,8 +70,8 @@
           "scene": null
         },
         {
-          "name": "pages/personal/install_change/password_change/password_change",
-          "pathName": "pages/personal/install_change/password_change/password_change",
+          "name": "pages/personal/contact_us/contact_us",
+          "pathName": "pages/personal/contact_us/contact_us",
           "query": "",
           "scene": null
         }

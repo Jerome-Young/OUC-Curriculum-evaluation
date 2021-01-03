@@ -18,27 +18,27 @@ Page({
     functions: [
       {
         "name": "公共基础",
-        "pic_url": '../../images/1.jpg'
+        "pic_url": 'cloud://test-env-8ger46eu356799f7.7465-test-env-8ger46eu356799f7-1304156061/程序配置图片/1.png'
       },
       {
         "name": "通识选修",
-        "pic_url": '../../images/2.jpg'
+        "pic_url": 'cloud://test-env-8ger46eu356799f7.7465-test-env-8ger46eu356799f7-1304156061/程序配置图片/2.png'
       },
       {
         "name": "专业素养",
-        "pic_url": '../../images/3.jpg'
+        "pic_url": 'cloud://test-env-8ger46eu356799f7.7465-test-env-8ger46eu356799f7-1304156061/程序配置图片/3.png'
       },
       {
         "name": "培养方案",
-        "pic_url": '../../images/4.jpg'
+        "pic_url": 'cloud://test-env-8ger46eu356799f7.7465-test-env-8ger46eu356799f7-1304156061/程序配置图片/4.png'
       },
       {
         "name": "通识模块",
-        "pic_url": '../../images/5.jpg'
+        "pic_url": 'cloud://test-env-8ger46eu356799f7.7465-test-env-8ger46eu356799f7-1304156061/程序配置图片/5.png'
       },
       {
         "name": "用户反馈",
-        "pic_url": '../../images/6.jpg'
+        "pic_url": 'cloud://test-env-8ger46eu356799f7.7465-test-env-8ger46eu356799f7-1304156061/程序配置图片/6.png'
       }
     ],
     lovenum:0
