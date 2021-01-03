@@ -38,4 +38,91 @@
   }
 
   /* 我的评论 */
+  .scroll-x{
+    height:50px;
+    white-space:nowrap;
+    display:flex;
+  }
+  /* 隐藏scrollbar */
+  ::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+    color: transparent;
+  }
+  .kind_contain{
+    width: 100%;
+    height: 90rpx;
+    display: flex;
+    border-bottom: 1rpx solid #eee;
+    background: #fff;
+    align-items: center;
+    position: relative;
+  }
+  
+  .view-parent{
+    display:inline-block;
+  }
+  .view-item{
+    width:120px;
+    height:30px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:12px;
+    font-style:#222;
+    background:rgb(1,168,236);
+    margin:10px;
+    box-shadow: 1px 1px 2px 1px rgba(0,0,0, 0.15);
+  }
+  
+  .nav-text {
+    width:60px;
+    height:30px;
+    font-size:14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 4rpx;
+    box-sizing: border-box;
+    background-color: rgb(180,180,180);
+  }
+  
+  .tab-on {
+    color: #000;
+    font-size: 32rpx !important;
+    font-weight: 600;
+    border-bottom: 4rpx solid #915cbd !important;
+  }
+  /* 分割线 */
+  .divider{
+    background:#f5f5f5;
+    height: 40rpx;
+    width:100%;
+  }
+  
+  .text{
+    border: double #000 10rpx;
+  }
+  .left-text{
+    display: inline-block;
+    text-align: left;
+    padding-left: 10px;
+    height: 50px;
+    font-size: 16px;
+    font-weight: bolder;
+  }
+  .teacher-text{
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .right-text{
+    /* display: inline-block; */
+    text-align: right;
+    padding-right: 20px;
+  }
+  .score-text{
+    font-size: 14px;
+    font-weight: 500;
+  }
   

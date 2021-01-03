@@ -11,6 +11,18 @@
 
 <!-- 评论主体 -->
 <scroll-view scroll-y="true" class="scroll-y">
-  <view>
+
+  <view class="text" wx:for="{{reply}}">
+    <view class="left-text" bindtap="comment"  data-source_id="{{item.source_id}}">
+ 
+      <view class="teacher-text"> {{item.comment}}</view>
+    </view>
+   
   </view>
-</scroll-view>
+<!-- </scroll-view>
+  <view wx:for="{{reply}}" bindtap="comment" data-source_id="{{item.source_id}}">
+  <view>---
+ ----
+</view>
+  </view>-->
+</scroll-view> 
